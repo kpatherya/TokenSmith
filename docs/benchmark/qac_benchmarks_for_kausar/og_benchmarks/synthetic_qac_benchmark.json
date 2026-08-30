@@ -1,0 +1,1866 @@
+[
+  {
+    "id": "1.1",
+    "chapter": 1,
+    "difficulty": "easy",
+    "question": "What is the primary goal of a database-management system (DBMS)?",
+    "answer": "The primary goal of a database-management system (DBMS) is to provide a way to store and retrieve database information that is both convenient and efficient.",
+    "must_rubric": [
+      "Must state that the goal is to provide a way to store and retrieve database information."
+    ],
+    "optional_rubric": [
+      "Must specify that this process should be both convenient and efficient or use any appropriate synonyms for these characteristics."
+    ],
+    "gold_chunks": [
+      "The primary goal of a DBMS is to provide a way to store and retrieve database information that is both convenient and efficient ."
+    ],
+    "optional_chunks": [],
+    "source_id": "c01_w43_67_q000"
+  },
+  {
+    "id": "1.2",
+    "chapter": 1,
+    "difficulty": "easy",
+    "question": "What is the difference between a database instance and a database schema?",
+    "answer": "A database schema is the overall design of the database, whereas a database instance is the collection of information stored in the database at a particular moment in time. By analogy to programming, a schema is like the variable declarations in a program, while an instance corresponds to the values of those variables at a specific point in time.",
+    "must_rubric": [
+      "Must define the database schema as the overall design or logical design of the database.",
+      "Must define the database instance as the information stored at a particular moment or as a snapshot of the data in the database at a particular time."
+    ],
+    "optional_rubric": [
+      "May give analogy of variable declaration being a database schema and assigning value to that variable as being the database instance."
+    ],
+    "gold_chunks": [
+      "The collection of information stored in the database at a particular moment is called an instance of the database.",
+      "The overall design of the database is called the database schema .",
+      "When we talk about a database, we must differentiate between the database schema , which is the logical design of the database, and the database instance , which is a snapshot of the data in the database at a given instant in time."
+    ],
+    "optional_chunks": [
+      "A database schema corresponds to the variable declarations (along with associated type definitions) in a program.",
+      "The values of the variables in a program at a point in time correspond to an instance of a database schema."
+    ],
+    "example_analogy_chunks": [
+      "A database schema corresponds to the variable declarations (along with associated type definitions) in a program.",
+      "The values of the variables in a program at a point in time correspond to an instance of a database schema."
+    ],
+    "example_analogy_rubric": [
+      "May give analogy of variable declaration being a database schema and assigning value to that variable as being the database instance."
+    ],
+    "chunk_relationships": {
+      "composites": [
+        [
+          "A database schema corresponds to the variable declarations (along with associated type definitions) in a program.",
+          "The values of the variables in a program at a point in time correspond to an instance of a database schema."
+        ]
+      ],
+      "substitutes": [
+        [
+          "The collection of information stored in the database at a particular moment is called an instance of the database.",
+          "When we talk about a database, we must differentiate between the database schema , which is the logical design of the database, and the database instance , which is a snapshot of the data in the database at a given instant in time."
+        ],
+        [
+          "The overall design of the database is called the database schema .",
+          "When we talk about a database, we must differentiate between the database schema , which is the logical design of the database, and the database instance , which is a snapshot of the data in the database at a given instant in time."
+        ]
+      ]
+    },
+    "source_id": "c01_w43_67_q001"
+  },
+  {
+    "id": "1.3",
+    "chapter": 1,
+    "difficulty": "easy",
+    "question": "What are the two types of data-manipulation languages (DMLs)?",
+    "answer": "The two types of data-manipulation languages are procedural DMLs, which require a user to specify what data is needed and how to get it, and declarative DMLs, which only require a user to specify what data is needed without detailing how to retrieve it.",
+    "must_rubric": [
+      "Must identify procedural DMLs and declarative DMLs as the two types.",
+      "Must correctly explain that procedural DMLs specify 'what' and 'how', while declarative DMLs specify only 'what'."
+    ],
+    "optional_rubric": [],
+    "gold_chunks": [
+      "There are basically two types of data-manipulation language:",
+      "Procedural DMLs require a user to specify what data are needed and how to get those data.",
+      "Declarative DMLs (also referred to as nonprocedural DMLs ) require a user to specify what data are needed without specifying how to get those data."
+    ],
+    "optional_chunks": [],
+    "chunk_relationships": {
+      "composites": [
+        [
+          "Procedural DMLs require a user to specify what data are needed and how to get those data.",
+          "Declarative DMLs (also referred to as nonprocedural DMLs ) require a user to specify what data are needed without specifying how to get those data."
+        ]
+      ],
+      "substitutes": []
+    },
+    "source_id": "c01_w43_67_q002"
+  },
+  {
+    "id": "1.4",
+    "chapter": 1,
+    "difficulty": "medium",
+    "question": "Describe the three levels of data abstraction used in database systems and the purpose of each level.",
+    "answer": "The three levels of data abstraction are the physical, logical, and view levels. The physical level is the lowest level, describing in detail how data are actually stored using complex low-level data structures. The logical level is the next-higher level, which describes what data are stored and the relationships between them, hiding the complexity of the physical structures. The view level is the highest level of abstraction and simplifies user interaction by describing only a part of the entire database, which also serves as a security mechanism.",
+    "must_rubric": [
+      "Must identify the three levels: physical, logical, and view.",
+      "Must correctly describe the physical level as concerning *how* data is stored or talk about how it deals with the low-level data structures.",
+      "Must correctly describe the logical level as concerning *what* data is stored and its relationships.",
+      "Must correctly describe the view level as a partial view of the database for simplified interactions for the user with the system. "
+    ],
+    "optional_rubric": [
+      "May add that the view level also provides a security mechanism for access control over parts of the database."
+    ],
+    "gold_chunks": [
+      "Physical level . The lowest level of abstraction describes how the data are actually stored.",
+      "The physical level describes complex low-level data structures in detail.",
+      "Logical level . The next-higher level of abstraction describes what data are stored in the database, and what relationships exist among those data.",
+      "View level . The highest level of abstraction describes only part of the entire database.",
+      "The view level of abstraction exists to simplify their interaction with the system."
+    ],
+    "optional_chunks": [
+      "Since many database-system users are not computer trained, developers hide the complexity from users through several levels of data abstraction , to simplify users' interactions with the system:",
+      "The logical level thus describes the entire database in terms of a small number of relatively simple structures.",
+      "In addition to hiding details of the logical level of the database, the views also provide a security mechanism to prevent users from accessing certain parts of the database."
+    ],
+    "chunk_relationships": {
+      "composites": [
+        [
+          "Physical level . The lowest level of abstraction describes how the data are actually stored.",
+          "The physical level describes complex low-level data structures in detail."
+        ],
+        [
+          "View level . The highest level of abstraction describes only part of the entire database.",
+          "The view level of abstraction exists to simplify their interaction with the system."
+        ]
+      ],
+      "substitutes": []
+    },
+    "source_id": "c01_w43_67_q003"
+  },
+  {
+    "id": "1.5",
+    "chapter": 1,
+    "difficulty": "medium",
+    "question": "Explain the problems of data redundancy and inconsistency as they relate to file-processing systems.",
+    "answer": "In a file-processing system, data redundancy occurs when the same information is duplicated across several files. This duplication leads to higher storage and access costs. More importantly, it can lead to data inconsistency, a state where the various copies of the same data no longer agree. For instance, if a student's address is updated in one department's file but not another, the data becomes inconsistent.",
+    "must_rubric": [
+      "Must define data redundancy as the duplication of information in multiple files. Mention that this leads to higher storage and access costs.",
+      "Must define data inconsistency as a state where copies of the same data do not agree."
+    ],
+    "optional_rubric": [],
+    "gold_chunks": [
+      "Moreover, the same information may be duplicated in several places (files).",
+      "For example, if a student has a double major (say, music and mathematics), the address and telephone number of that student may appear in a file that consists of student records of students in the Music department and in a file that consists of student records of students in the Mathematics department.",
+      "This redundancy leads to higher storage and access cost.",
+      "In addition, it may lead to data inconsistency ; that is, the various copies of the same data may no longer agree.",
+      "For example, a changed student address may be reflected in the Music department records but not elsewhere in the system."
+    ],
+    "optional_chunks": [
+      "Since different programmers create the files and application programs over a long period, the various files are likely to have different structures, and the programs may be written in several programming languages."
+    ],
+    "example_analogy_chunks": [
+      "For example, if a student has a double major (say, music and mathematics), the address and telephone number of that student may appear in a file that consists of student records of students in the Music department and in a file that consists of student records of students in the Mathematics department.",
+      "For example, a changed student address may be reflected in the Music department records but not elsewhere in the system.",
+      "Since different programmers create the files and application programs over a long period, the various files are likely to have different structures, and the programs may be written in several programming languages."
+    ],
+    "chunk_relationships": {
+      "composites": [
+        [
+          "Since different programmers create the files and application programs over a long period, the various files are likely to have different structures, and the programs may be written in several programming languages.",
+          "Moreover, the same information may be duplicated in several places (files).",
+          "For example, if a student has a double major (say, music and mathematics), the address and telephone number of that student may appear in a file that consists of student records of students in the Music department and in a file that consists of student records of students in the Mathematics department.",
+          "This redundancy leads to higher storage and access cost."
+        ],
+        [
+          "In addition, it may lead to data inconsistency ; that is, the various copies of the same data may no longer agree.",
+          "For example, a changed student address may be reflected in the Music department records but not elsewhere in the system."
+        ]
+      ],
+      "substitutes": []
+    },
+    "source_id": "c01_w43_67_q004"
+  },
+  {
+    "id": "1.6",
+    "chapter": 1,
+    "difficulty": "easy",
+    "question": "What is an atomicity problem, and is it difficult to ensure atomicity in a conventional file-processing system?",
+    "answer": "An atomicity problem arises when a sequence of operations that must occur as a single, indivisible unit is interrupted by a system failure, leaving the data in an inconsistent state. It is crucial that, if a failure occurs, the data be restored to the consistent state that existed before the failure. Yes, it is difficult to ensure atomicity in a conventional file-processing system, which is one of the motivations for using a database system.",
+    "must_rubric": [
+      "Must explain that an atomicity problem occurs when a failure interrupts such an operation, leading to an inconsistent state.",
+      "Must state that ensuring atomicity is difficult in file-processing systems."
+    ],
+    "optional_rubric": [
+      "May use an example, such as a fund transfer, to illustrate the problem."
+    ],
+    "gold_chunks": [
+      "In many applications, it is crucial that, if a failure occurs, the data be restored to the consistent state that existed prior to the failure.",
+      "It is difficult to ensure atomicity in a conventional fileprocessing system."
+    ],
+    "optional_chunks": [
+      "Consider a banking system with a program to transfer $500 from account A to account B .",
+      "If a system failure occurs during the execution of the program, it is possible that the $500 was removed from the balance of account A but was not credited to the balance of account B , resulting in an inconsistent database state.",
+      "Clearly, it is essential to database consistency that either both the credit and debit occur, or that neither occur.",
+      "That is, the funds transfer must be atomic -it must happen in its entirety or not at all.",
+      "Atomicity problems. A computer system, like any other device, is subject to failure."
+    ],
+    "example_analogy_chunks": [
+      "Consider a banking system with a program to transfer $500 from account A to account B .",
+      "If a system failure occurs during the execution of the program, it is possible that the $500 was removed from the balance of account A but was not credited to the balance of account B , resulting in an inconsistent database state.",
+      "Clearly, it is essential to database consistency that either both the credit and debit occur, or that neither occur.",
+      "That is, the funds transfer must be atomic -it must happen in its entirety or not at all."
+    ],
+    "example_analogy_rubric": [
+      "May use an example, such as a fund transfer, to illustrate the problem."
+    ],
+    "chunk_relationships": {
+      "composites": [
+        [
+          "Atomicity problems. A computer system, like any other device, is subject to failure.",
+          "In many applications, it is crucial that, if a failure occurs, the data be restored to the consistent state that existed prior to the failure."
+        ],
+        [
+          "Consider a banking system with a program to transfer $500 from account A to account B .",
+          "If a system failure occurs during the execution of the program, it is possible that the $500 was removed from the balance of account A but was not credited to the balance of account B , resulting in an inconsistent database state.",
+          "Clearly, it is essential to database consistency that either both the credit and debit occur, or that neither occur.",
+          "That is, the funds transfer must be atomic -it must happen in its entirety or not at all."
+        ]
+      ],
+      "substitutes": []
+    },
+    "source_id": "c01_w43_67_q005"
+  },
+  {
+    "id": "1.7",
+    "chapter": 1,
+    "difficulty": "hard",
+    "question": "Is data redundancy solely a problem with file processing systems or can databases also suffer from this issue? If so, give an example of a database schema that leads to this problem.",
+    "answer": "Data redundancy is the same information being duplicated in several places or files. This is a known problem with fileprocessing systems however databases may also suffer from this problem due to a badly designed schema. For example, if we store the department budget as an attribute of the instructor record. Then, whenever the value of the budget for a department (say the Physics department) changes, that change must be reflected in the records of all instructors associated with the department. This data redundancy leads to more edits being needed across different files when we make a change. ",
+    "must_rubric": [
+      "Must define data redundancy problem as the same information being stored across multiple files or in multiple places.",
+      "Must give a proper example of a database schema where it is shown that due to poor schema design, some column or information is being repeated, and thus during an edit or delete operation multiple records across different files or places need to be updated to reflect that change due to the data redundancy of the schema."
+    ],
+    "optional_rubric": [],
+    "gold_chunks": [
+      "Moreover, the same information may be duplicated in several places (files).",
+      "We also note that it is possible to create schemas that have problems, such as unnecessarily duplicated information.",
+      "For example, suppose we store the department budget as an attribute of the instructor record.",
+      "Then, whenever the value of the budget for a department (say the Physics department) changes, that change must be reflected in the records of all instructors associated with the department."
+    ],
+    "optional_chunks": [
+      "Since different programmers create the files and application programs over a long period, the various files are likely to have different structures, and the programs may be written in several programming languages.",
+      "For example, if a student has a double major (say, music and mathematics), the address and telephone number of that student may appear in a file that consists of student records of students in the Music department and in a file that consists of student records of students in the Mathematics department."
+    ],
+    "example_analogy_chunks": [
+      "For example, suppose we store the department budget as an attribute of the instructor record.",
+      "Then, whenever the value of the budget for a department (say the Physics department) changes, that change must be reflected in the records of all instructors associated with the department.",
+      "For example, if a student has a double major (say, music and mathematics), the address and telephone number of that student may appear in a file that consists of student records of students in the Music department and in a file that consists of student records of students in the Mathematics department."
+    ],
+    "example_analogy_rubric": [
+      "Must give a proper example of a database schema where it is shown that due to poor schema design, some column or information is being repeated, and thus during an edit or delete operation multiple records across different files or places need to be updated to reflect that change due to the data redundancy of the schema."
+    ],
+    "chunk_relationships": {
+      "composites": [
+        [
+          "Since different programmers create the files and application programs over a long period, the various files are likely to have different structures, and the programs may be written in several programming languages.",
+          "For example, if a student has a double major (say, music and mathematics), the address and telephone number of that student may appear in a file that consists of student records of students in the Music department and in a file that consists of student records of students in the Mathematics department.",
+          "Moreover, the same information may be duplicated in several places (files)."
+        ],
+        [
+          "For example, suppose we store the department budget as an attribute of the instructor record.",
+          "Then, whenever the value of the budget for a department (say the Physics department) changes, that change must be reflected in the records of all instructors associated with the department."
+        ]
+      ],
+      "substitutes": []
+    },
+    "source_id": "c01_w43_67_q006"
+  },
+  {
+    "id": "3.1",
+    "chapter": 3,
+    "difficulty": "easy",
+    "question": "What are the main components of the SQL language?",
+    "answer": "The SQL language is composed of several parts: a Data-Definition Language (DDL) for defining schemas, a Data-Manipulation Language (DML) for querying and modifying data, Integrity for specifying constraints, View definition, Transaction control, Embedded and dynamic SQL for use in programming languages, and Authorization for managing access rights.",
+    "must_rubric": [
+      "Must list some of the following components: DDL, DML, Integrity, View definition, Transaction control, Embedded/dynamic SQL, Authorization. This list must include both DDL and DML and at least 2 other parts along with their definitions."
+    ],
+    "optional_rubric": [],
+    "gold_chunks": [
+      "Data-definition language ( DDL ). The SQL DDL provides commands for defining relation schemas, deleting relations, and modifying relation schemas.",
+      "Data-manipulation language ( DML ). The SQL DML provides the ability to query information from the database and to insert tuples into, delete tuples from, and modify tuples in the database.",
+      "Integrity . The SQL DDL includes commands for specifying integrity constraints that the data stored in the database must satisfy.",
+      "View definition . The SQL DDL includes commands for defining views.",
+      "Transaction control . SQL includes commands for specifying the beginning and end points of transactions.",
+      "Embedded SQL and dynamic SQL. Embedded and dynamic SQL define how SQL statements can be embedded within general-purpose programming languages, such as C, C++, and Java.",
+      "Authorization . The SQL DDL includes commands for specifying access rights to relations and views."
+    ],
+    "optional_chunks": [
+      "The SQL language has several parts:"
+    ],
+    "source_id": "c03_w139_163_q000"
+  },
+  {
+    "id": "3.2",
+    "chapter": 3,
+    "difficulty": "easy",
+    "question": "What is the difference between the `drop table` and `delete from` commands in SQL?",
+    "answer": "The `delete from r;` command removes all tuples from a relation `r` but leaves the relation's schema intact. In contrast, the `drop table r;` command is a more drastic action; it not only deletes all the tuples but also removes the schema for `r` from the database entirely.",
+    "must_rubric": [
+      "Must state that `delete from` removes only the tuples (data) while retaining the relation.",
+      "Must state that `drop table` removes both the tuples and the schema."
+    ],
+    "optional_rubric": [
+      "May identify `drop table` as the more drastic action."
+    ],
+    "gold_chunks": [
+      "To remove a relation from an SQL database, we use the drop table command.",
+      "The drop table command deletes all information about the dropped relation from the database.",
+      "The command drop table r; is a more drastic action than delete from r;",
+      "The latter retains relation r , but deletes all tuples in r .",
+      "The former deletes not only all tuples of r , but also the schema for r .",
+      "After r is dropped, no tuples can be inserted into r unless it is re-created with the create table command."
+    ],
+    "optional_chunks": [],
+    "chunk_relationships": {
+      "composites": [
+        [
+          "The command drop table r; is a more drastic action than delete from r;",
+          "The latter retains relation r , but deletes all tuples in r .",
+          "The former deletes not only all tuples of r , but also the schema for r .",
+          "After r is dropped, no tuples can be inserted into r unless it is re-created with the create table command."
+        ]
+      ],
+      "substitutes": []
+    },
+    "source_id": "c03_w139_163_q001"
+  },
+  {
+    "id": "3.3",
+    "chapter": 3,
+    "difficulty": "easy",
+    "question": "What do the two special characters, percent (%) and underscore (_), represent in SQL's `like` operator for pattern matching?",
+    "answer": "In SQL's `like` operator for string pattern matching, the percent character (%) matches any substring, regardless of its length. The underscore character (_) matches any single character.",
+    "must_rubric": [
+      "Must correctly define the percent (%) character's function as matching any substring.",
+      "Must correctly define the underscore (_) character's function as matching any single character."
+    ],
+    "optional_rubric": [],
+    "gold_chunks": [
+      "Percent (%): The % character matches any substring.",
+      "Underscore (_): The _ character matches any character."
+    ],
+    "optional_chunks": [
+      "Pattern matching can be performed on strings using the operator like .",
+      "We describe patterns by using two special characters:"
+    ],
+    "chunk_relationships": {
+      "composites": [
+        [
+          "We describe patterns by using two special characters:",
+          "Percent (%): The % character matches any substring.",
+          "Underscore (_): The _ character matches any character."
+        ]
+      ],
+      "substitutes": []
+    },
+    "source_id": "c03_w139_163_q002"
+  },
+  {
+    "id": "3.4",
+    "chapter": 3,
+    "difficulty": "medium",
+    "question": "Compare the `char(n)` and `varchar(n)` data types in SQL. When might you prefer to use `varchar`?",
+    "answer": "The `char(n)` data type stores a fixed-length character string of length `n`. If a shorter string is stored, it is padded with spaces to reach the full length. In contrast, `varchar(n)` stores a variable-length character string with a maximum length of `n`, and no padding is added. You should prefer `varchar` to avoid potential issues with comparisons; comparing a `char` and a `varchar` containing the same logical value (e.g., 'Avi') might unexpectedly return false due to the padding on the `char` type, and this behavior can vary by database system. The textbook explicitly recommends always using `varchar` to avoid these problems.",
+    "must_rubric": [
+      "Must define `char(n)` as fixed-length and state that it uses space padding.",
+      "Must define `varchar(n)` as variable-length up to a maximum `n` and state that it does not use padding.",
+      "Must explain that the preference for `varchar` is to avoid comparison problems caused by space padding."
+    ],
+    "optional_rubric": [],
+    "gold_chunks": [
+      "char ( n ): A fixed-length character string with user-specified length n.",
+      "varchar ( n ): A variable-length character string with userspecified maximum length n .",
+      "The char data type stores fixed-length strings.",
+      "Consider, for example, an attribute A of type char (10).",
+      "If we stored a string 'Avi' in this attribute, seven spaces are appended to the string to make it 10 characters long.",
+      "In contrast, if attribute B were of type varchar (10), and we stored 'Avi' in attribute B , no spaces would be added.",
+      "As a result, even if the same value 'Avi' is stored in the attributes A and B above, a comparison A=B may return false."
+    ],
+    "optional_chunks": [
+      "When comparing a char type with a varchar type, one may expect extra spaces to be added to the varchar type to make the lengths equal, before comparison; however, this may or may not be done, depending on the database system.",
+      "We recommend you always use the varchar type instead of the char type to avoid these problems."
+    ],
+    "example_analogy_chunks": [
+      "Consider, for example, an attribute A of type char (10).",
+      "If we stored a string 'Avi' in this attribute, seven spaces are appended to the string to make it 10 characters long.",
+      "In contrast, if attribute B were of type varchar (10), and we stored 'Avi' in attribute B , no spaces would be added.",
+      "As a result, even if the same value 'Avi' is stored in the attributes A and B above, a comparison A=B may return false."
+    ],
+    "chunk_relationships": {
+      "composites": [
+        [
+          "Consider, for example, an attribute A of type char (10).",
+          "If we stored a string 'Avi' in this attribute, seven spaces are appended to the string to make it 10 characters long.",
+          "In contrast, if attribute B were of type varchar (10), and we stored 'Avi' in attribute B , no spaces would be added.",
+          "As a result, even if the same value 'Avi' is stored in the attributes A and B above, a comparison A=B may return false.",
+          "We recommend you always use the varchar type instead of the char type to avoid these problems."
+        ]
+      ],
+      "substitutes": [
+        [
+          "char ( n ): A fixed-length character string with user-specified length n.",
+          "The char data type stores fixed-length strings."
+        ]
+      ]
+    },
+    "source_id": "c03_w139_163_q003"
+  },
+  {
+    "id": "3.5",
+    "chapter": 3,
+    "difficulty": "medium",
+    "question": "Why is the `as` clause for renaming relations, also known as creating a table alias, sometimes necessary in an SQL query? Provide two distinct reasons.",
+    "answer": "The `as` clause is used to rename relations for two main reasons. First, it can be used to assign a shorter, more convenient alias to a relation with a long name, which can then be used elsewhere in the query. Second, and more critically, it is necessary when you need to compare tuples within the same relation. By creating two different aliases for the same relation (e.g., `instructor as T` and `instructor as S`), you can treat them as two distinct tables in the `from` clause. This allows you to join the relation with itself and distinguish between attributes from the different tuple variables (e.g., `T.salary` vs. `S.salary`), which would otherwise be impossible.",
+    "must_rubric": [
+      "Must identify the first reason: creating a shorter, more convenient alias for a long relation name.",
+      "Must identify the second reason: enabling a self-join by creating distinct aliases for the same relation. The alias is necessary to distinguish between attributes of the different tuple variables being compared."
+    ],
+    "optional_rubric": [],
+    "gold_chunks": [
+      "One reason to rename a relation is to replace a long relation name with a shortened version that is more convenient to use elsewhere in the query.",
+      "Another reason to rename a relation is a case where we wish to compare tuples in the same relation.",
+      "We then need to take the Cartesian product of a relation with itself and, without renaming, it becomes impossible to distinguish one tuple from the other."
+    ],
+    "optional_chunks": [
+      "The as clause is particularly useful in renaming relations."
+    ],
+    "chunk_relationships": {
+      "composites": [
+        [
+          "Another reason to rename a relation is a case where we wish to compare tuples in the same relation.",
+          "We then need to take the Cartesian product of a relation with itself and, without renaming, it becomes impossible to distinguish one tuple from the other."
+        ]
+      ],
+      "substitutes": []
+    },
+    "source_id": "c03_w139_163_q004"
+  },
+  {
+    "id": "3.6",
+    "chapter": 3,
+    "difficulty": "medium",
+    "question": "Conceptually, how does an SQL query with `select`, `from`, and `where` clauses process information to produce a result?",
+    "answer": "The conceptual processing of a basic SQL query follows a three-step sequence, which is best understood in an operational order different from how it's written. First, the `from` clause generates a Cartesian product of all relations listed. Second, the `where` clause applies its predicates to this large intermediate result, filtering out any rows that do not satisfy the conditions. Finally, for each row that remains after filtering, the `select` clause outputs the specified attributes or expression results. This sequence is a conceptual model for understanding the query's meaning, not how a real database system would actually execute it.",
+    "must_rubric": [
+      "Must describe the three steps in the correct conceptual order: `from`, then `where`, then `select`. Or define equivalent in some other terms. ",
+      "Must state that the `from` clause generates a Cartesian product.",
+      "Must state that the `where` clause applies predicates to filter the result of the `from` clause.",
+      "Must state that the `select` clause projects the final attributes from the filtered rows."
+    ],
+    "optional_rubric": [
+      "May mention that this is a conceptual model, not a literal execution plan."
+    ],
+    "gold_chunks": [
+      "Although the clauses must be written in the order select , from , where , the easiest way to understand the operations specified by the query is to consider the clauses in operational order: first from , then where , and then select .",
+      "The from clause by itself defines a Cartesian product of the relations listed in the clause.",
+      "1. Generate a Cartesian product of the relations listed in the from clause.",
+      "2. Apply the predicates specified in the where clause on the result of Step 1.",
+      "3. For each tuple in the result of Step 2, output the attributes (or results of expressions) specified in the select clause.",
+      "This sequence of steps helps make clear what the result of an SQL query should be, not how it should be executed."
+    ],
+    "optional_chunks": [
+      "In general, the meaning of an SQL query can be understood as follows:"
+    ],
+    "chunk_relationships": {
+      "composites": [
+        [
+          "In general, the meaning of an SQL query can be understood as follows:",
+          "1. Generate a Cartesian product of the relations listed in the from clause.",
+          "2. Apply the predicates specified in the where clause on the result of Step 1.",
+          "3. For each tuple in the result of Step 2, output the attributes (or results of expressions) specified in the select clause.",
+          "This sequence of steps helps make clear what the result of an SQL query should be, not how it should be executed."
+        ]
+      ],
+      "substitutes": [
+        [
+          "The from clause by itself defines a Cartesian product of the relations listed in the clause.",
+          "1. Generate a Cartesian product of the relations listed in the from clause."
+        ]
+      ]
+    },
+    "source_id": "c03_w139_163_q005"
+  },
+  {
+    "id": "3.7",
+    "chapter": 3,
+    "difficulty": "hard",
+    "question": "A query is written as `select distinct A.name from school as A, school as B where A.cost > B.cost and A.city = 'Atlanta';`. Based on the conceptual execution model of SQL, explain how this query would run and what is this query looking for in terms of schools that meet what predicate?",
+    "answer": "The query identifies the names of schools in Atlanta that are more expensive than at least one other school in the entire database. Following the conceptual execution model, SQL first creates a Cartesian product of the school table with itself, creating every possible pair of schools A and B. It then filters these pairs to find cases where school A is located in Atlanta and its cost is strictly greater than the cost of school B. Because it only requires the condition to be true for a single pair, any Atlanta school that is not the absolute cheapest school in the table will satisfy the predicate. Finally, the distinct keyword ensures each qualifying school name is listed only once, regardless of how many other schools it is more expensive than.",
+    "must_rubric": [
+      "Must mention that the execution model's first step is forming a Cartesian product of the school table with itself.",
+      "Must mention second step is filtering those pairs to check that school A is located in Atlanta.",
+      "Must mention the second filtering predicate as requiring school A's cost to be strictly greater than school B's cost.",
+      "Must mention the practical meaning: the query looks for Atlanta schools that are more expensive than at least one other school in the entire database. In other words, looking for Atlanta schools that are not the cheapest across all schools in the database. You should penalize any wrong interpretations of the query such as stating the city Atlanta predicate applies to both school A and B, or, that it is finding only schools that are the most expensive or others."
+    ],
+    "optional_rubric": [
+      "May mention that the distinct keyword removes duplicate names from the final output."
+    ],
+    "gold_chunks": [
+      "2. Apply the predicates specified in the where clause on the result of Step 1.",
+      "3. For each tuple in the result of Step 2, output the attributes (or results of expressions) specified in the select clause.",
+      "Suppose that we want to write the query 'Find the names of all instructors whose salary is greater than at least one instructor in the Biology department. '",
+      "We can write the SQL expression: select distinct T.name from instructor as T , instructor as S where T.salary > S.salary and S.dept_name = 'Biology';",
+      "1. Generate a Cartesian product of the relations listed in the from clause."
+    ],
+    "optional_chunks": [
+      "In general, the meaning of an SQL query can be understood as follows:"
+    ],
+    "example_analogy_chunks": [
+      "Suppose that we want to write the query 'Find the names of all instructors whose salary is greater than at least one instructor in the Biology department. '",
+      "We can write the SQL expression: select distinct T.name from instructor as T , instructor as S where T.salary > S.salary and S.dept_name = 'Biology';"
+    ],
+    "chunk_relationships": {
+      "composites": [
+        [
+          "In general, the meaning of an SQL query can be understood as follows:",
+          "1. Generate a Cartesian product of the relations listed in the from clause.",
+          "2. Apply the predicates specified in the where clause on the result of Step 1.",
+          "3. For each tuple in the result of Step 2, output the attributes (or results of expressions) specified in the select clause."
+        ],
+        [
+          "Suppose that we want to write the query 'Find the names of all instructors whose salary is greater than at least one instructor in the Biology department. '",
+          "We can write the SQL expression: select distinct T.name from instructor as T , instructor as S where T.salary > S.salary and S.dept_name = 'Biology';"
+        ]
+      ],
+      "substitutes": []
+    },
+    "source_id": "c03_w139_163_q006"
+  },
+  {
+    "id": "7.1",
+    "chapter": 7,
+    "difficulty": "easy",
+    "question": "What is a trivial functional dependency?",
+    "answer": "A functional dependency is considered trivial if it is satisfied by all relations. Formally, a functional dependency of the form α → β is trivial if the set of attributes β is a subset of the set of attributes α.",
+    "must_rubric": [
+      "Must state that trivial functional dependencies are satisfied by all relations. May provide the formal definition: α → β is trivial if β ⊆ α as an alternative."
+    ],
+    "optional_rubric": [],
+    "gold_chunks": [
+      "Some functional dependencies are said to be trivial because they are satisfied by all relations.",
+      "In general, a functional dependency of the form α → β is trivial if β ⊆ α."
+    ],
+    "optional_chunks": [],
+    "chunk_relationships": {
+      "composites": [
+        [
+          "Some functional dependencies are said to be trivial because they are satisfied by all relations.",
+          "In general, a functional dependency of the form α → β is trivial if β ⊆ α."
+        ]
+      ],
+      "substitutes": []
+    },
+    "source_id": "c07_w471_495_q000"
+  },
+  {
+    "id": "7.2",
+    "chapter": 7,
+    "difficulty": "easy",
+    "question": "What is a functional dependency?",
+    "answer": "For a given relation schema, a functional dependency α → β is a constraint where, in any legal instance of the relation, if any two tuples have the same values for the attributes in set α, they must also have the same values for the attributes in set β.",
+    "must_rubric": [
+      "Must give an example or illustration which defines the relationship between two sets of attributes (for example α and β or A and B).",
+      "Example must specify that for all pairs of tuples where t1[α] = t2[α], it must also hold that t1[β] = t2[β]. This can be explained either using this formal notation or a textual explanation (either is fine)."
+    ],
+    "optional_rubric": [
+      "May specify that this must hold for all pairs of tuples in any legal instance."
+    ],
+    "gold_chunks": [
+      "Consider a relation schema r ( R ), and let α ⊆ R and β ⊆ R .",
+      "Given an instance of r ( R ), we say that the instance satisfies the functional dependency ɑ → β if for all pairs of tuples t 1  and t 2  in the instance such that t 1 [a] = t 2 [a], it is also the case that t 1 [β] = t 2 [β].",
+      "We say that the functional dependency α → β holds on schema r ( R ) if, every legal instance of r ( R ) satisfies the functional dependency."
+    ],
+    "optional_chunks": [],
+    "chunk_relationships": {
+      "composites": [
+        [
+          "Consider a relation schema r ( R ), and let α ⊆ R and β ⊆ R .",
+          "Given an instance of r ( R ), we say that the instance satisfies the functional dependency ɑ → β if for all pairs of tuples t 1  and t 2  in the instance such that t 1 [a] = t 2 [a], it is also the case that t 1 [β] = t 2 [β].",
+          "We say that the functional dependency α → β holds on schema r ( R ) if, every legal instance of r ( R ) satisfies the functional dependency."
+        ]
+      ],
+      "substitutes": []
+    },
+    "source_id": "c07_w471_495_q001"
+  },
+  {
+    "id": "7.3",
+    "chapter": 7,
+    "difficulty": "easy",
+    "question": "What is the goal of the normalization process in relational database design?",
+    "answer": "The goal of normalization is to generate a set of relation schemas that allows information to be stored without unnecessary redundancy, while also allowing for easy retrieval of that information.",
+    "must_rubric": [
+      "Must state that the outcome is a set of relation schemas.",
+      "Must mention the dual goals of storing information without unnecessary redundancy and allowing for easy information retrieval. Synonyms of these terms may also be used which is acceptable."
+    ],
+    "optional_rubric": [],
+    "gold_chunks": [
+      "The goal is to generate a set of relation schemas that allows us to store information without unnecessary redundancy, yet also allows us to retrieve information easily."
+    ],
+    "optional_chunks": [],
+    "source_id": "c07_w471_495_q002"
+  },
+  {
+    "id": "7.4",
+    "chapter": 7,
+    "difficulty": "easy",
+    "question": "What are the two main problems associated with a poorly designed schema like `in_dep(ID, name, salary, dept_name, building, budget)` that combines instructor and department information?",
+    "answer": "A combined schema like `in_dep` suffers from two main problems. First, it causes information redundancy, as department details (building, budget) must be repeated for every instructor in that department, which risks data inconsistency if an update is not applied to all relevant tuples. Second, it is impossible to record information about a new department until at least one instructor is hired for it, because the schema requires values for instructor attributes like ID, name, and salary in every tuple.",
+    "must_rubric": [
+      "Must identify the problem of information redundancy, specifically repeating department information for each instructor.",
+      "Must identify the problem of being unable to represent a department without an associated instructor.",
+      "Must explain this is because tuples in the combined relation require values for instructor-specific attributes."
+    ],
+    "optional_rubric": [],
+    "gold_chunks": [
+      "Notice that we have to repeat the department information ('building' and 'budget') once for each instructor in the department.",
+      "This suggests that using in\\_dep is a bad idea since it stores the budget amounts redundantly and runs the risk that some user might update the budget amount in one tuple but not all, and thus create inconsistency.",
+      "Suppose we are creating a new department in the university.",
+      "In the alternative design above, we cannot represent directly the information concerning a department ( dept\\_name , building, budget ) unless that department has at least one instructor at the university.",
+      "This is because tuples in the in\\_dep table require values for ID , name, and salary."
+    ],
+    "optional_chunks": [],
+    "source_id": "c07_w471_495_q003"
+  },
+  {
+    "id": "7.5",
+    "chapter": 7,
+    "difficulty": "medium",
+    "question": "Under what condition is a decomposition of a relation schema R into two schemas R1 and R2 considered a lossless decomposition based on functional dependencies?",
+    "answer": "A decomposition of a relation schema R into two schemas, R1 and R2, is lossless if at least one of two functional dependencies holds: either the attributes common to both schemas (R1 ∩ R2) functionally determine all attributes in R1, or they functionally determine all attributes in R2. In other words, the set of attributes in the intersection of the two schemas must form a superkey for either R1 or R2.",
+    "must_rubric": [
+      "Must correctly identify the left-hand side of the dependency as the intersection of the two schemas (R1 ∩ R2).",
+      "Must correctly identify the right-hand side as either R1 or R2.",
+      "Should mention that this is equivalent to the intersection being a superkey for one of the schemas."
+    ],
+    "optional_rubric": [],
+    "gold_chunks": [
+      "R 1  and R 2  form a lossless decomposition of R if at least one of the following functional dependencies is in F + :",
+      "In other words, if R 1  ∩ R 2  forms a superkey for either R 1  or R 2 , the decomposition of R is a lossless decomposition."
+    ],
+    "optional_chunks": [
+      "R 1  ∩ R 2  → R 1",
+      "R 1  ∩ R 2  → R 2"
+    ],
+    "chunk_relationships": {
+      "composites": [
+        [
+          "R 1  and R 2  form a lossless decomposition of R if at least one of the following functional dependencies is in F + :",
+          "R 1  ∩ R 2  → R 1",
+          "R 1  ∩ R 2  → R 2",
+          "In other words, if R 1  ∩ R 2  forms a superkey for either R 1  or R 2 , the decomposition of R is a lossless decomposition."
+        ]
+      ],
+      "substitutes": [
+        [
+          "R 1  ∩ R 2  → R 1",
+          "In other words, if R 1  ∩ R 2  forms a superkey for either R 1  or R 2 , the decomposition of R is a lossless decomposition."
+        ],
+        [
+          "R 1  ∩ R 2  → R 2",
+          "In other words, if R 1  ∩ R 2  forms a superkey for either R 1  or R 2 , the decomposition of R is a lossless decomposition."
+        ]
+      ]
+    },
+    "source_id": "c07_w471_495_q004"
+  },
+  {
+    "id": "7.6",
+    "chapter": 7,
+    "difficulty": "medium",
+    "question": "How does the definition of Third Normal Form (3NF) relax the constraints of Boyce-Codd Normal Form (BCNF)?",
+    "answer": "BCNF requires that for any non-trivial functional dependency α → β, the left-hand side α must be a superkey. 3NF is less restrictive because it adds a third condition: a non-trivial dependency is also allowed if every attribute in β - α is part of some candidate key for the relation. This allows certain functional dependencies where α is not a superkey, which would be disallowed under BCNF.",
+    "must_rubric": [
+      "Must correctly state the additional condition allowed by 3NF (each attribute in β - α is contained in a candidate key).",
+      "Must conclude that this makes 3NF a relaxation of BCNF, allowing some dependencies that BCNF disallows."
+    ],
+    "optional_rubric": [
+      "Must correctly state the BCNF condition (for non-trivial FDs, the LHS must be a superkey)."
+    ],
+    "gold_chunks": [
+      "A relation schema R is in BCNF with respect to a set F of functional dependencies if, for all functional dependencies in F +  of the form α → β, where α ⊆ R and β ⊆ R , at least one of the following holds:\n\n- α → β is a trivial functional dependency (i.e., β ⊆ α).\n- α is a superkey for schema R.",
+      "A relation schema R is in third normal form with respect to a set F of functional dependencies if, for all functional dependencies in F +  of the form α → β, where α ⊆ R and β ⊆ R , at least one of the following holds:\n\n- α → β is a trivial functional dependency.\n- α is a superkey for R .\n- Each attribute A in β - α is contained in a candidate key for R .",
+      "A dependency α → β that satisfies only the third alternative of the 3NF definition is not allowed in BCNF but is allowed in 3NF."
+    ],
+    "optional_chunks": [
+      "BCNF is therefore a more restrictive normal form than is 3NF.",
+      "The definition of 3NF allows certain functional dependencies that are not allowed in BCNF."
+    ],
+    "chunk_relationships": {
+      "composites": [
+        [
+          "A relation schema R is in BCNF with respect to a set F of functional dependencies if, for all functional dependencies in F +  of the form α → β, where α ⊆ R and β ⊆ R , at least one of the following holds:\n\n- α → β is a trivial functional dependency (i.e., β ⊆ α).\n- α is a superkey for schema R.",
+          "A relation schema R is in third normal form with respect to a set F of functional dependencies if, for all functional dependencies in F +  of the form α → β, where α ⊆ R and β ⊆ R , at least one of the following holds:\n\n- α → β is a trivial functional dependency.\n- α is a superkey for R .\n- Each attribute A in β - α is contained in a candidate key for R ."
+        ]
+      ],
+      "substitutes": [
+        [
+          "The definition of 3NF allows certain functional dependencies that are not allowed in BCNF.",
+          "A dependency α → β that satisfies only the third alternative of the 3NF definition is not allowed in BCNF but is allowed in 3NF."
+        ]
+      ]
+    },
+    "source_id": "c07_w471_495_q005"
+  },
+  {
+    "id": "7.7",
+    "chapter": 7,
+    "difficulty": "hard",
+    "question": "A database designer has a schema that is in 3NF but not BCNF. Decomposing it into BCNF would result in a design that is not dependency-preserving. Why might the designer still prefer the BCNF decomposition, particularly when using standard SQL?",
+    "answer": "A designer might still prefer a BCNF decomposition over a dependency-preserving 3NF one because the primary advantage of dependency preservation is difficult to realize using standard SQL. Dependency preservation allows all functional dependencies to be checked on individual relations. However, standard SQL does not provide a way to specify and enforce arbitrary functional dependencies; it can only efficiently test those whose left-hand side is a key (via primary key or unique constraints). Since this limitation of SQL undermines the main benefit of a dependency-preserving design, it is often preferable to opt for BCNF, which provides stronger guarantees against data redundancy, even if it means some dependencies are not preserved in the decomposition.",
+    "must_rubric": [
+      "Must identify the trade-off between achieving BCNF and preserving dependencies.",
+      "Must state that standard SQL lacks a general mechanism for enforcing functional dependencies, except for key constraints.",
+      "Must conclude that given this practical limitation, choosing BCNF for its better redundancy control is a preferable choice."
+    ],
+    "optional_rubric": [
+      "Must reason that because of SQL's limitations, the main benefit of dependency preservation (efficiently checking all dependencies) is lost."
+    ],
+    "gold_chunks": [
+      "Since it is not always possible to satisfy all three, we may be forced to choose between BCNF and dependency preservation with 3NF.",
+      "It is worth noting that SQL does not provide a way of specifying functional dependencies, except for the special case of declaring superkeys by using the primary key or unique constraints.",
+      "Thus even if we had a dependency-preserving decomposition, if we use standard SQL we can test efficiently only those functional dependencies whose lefthand side is a key.",
+      "In summary, even if we are not able to get a dependencypreserving BCNF decomposition, it is still preferable to opt for BCNF, since checking functional dependencies other than primary key constraints is difficult in SQL."
+    ],
+    "optional_chunks": [],
+    "source_id": "c07_w471_495_q006"
+  },
+  {
+    "id": "12.1",
+    "chapter": 12,
+    "difficulty": "easy",
+    "question": "What is the difference between sequential-access storage and direct-access storage?",
+    "answer": "Sequential-access storage, such as magnetic tape, requires data to be accessed from the beginning of the medium in sequence. In contrast, direct-access storage, which includes magnetic disks and SSDs, allows data to be read from any location on the storage device without needing to process preceding data.",
+    "must_rubric": [
+      "Must state that direct access allows reading data from any location which is faster than tape access as that requires reading from the start of the tape."
+    ],
+    "optional_rubric": [
+      "Must identify tape storage as an example of sequential-access storage.",
+      "Must state that sequential access requires reading from the beginning of the medium.",
+      "Must identify magnetic disk and/or SSD storage as examples of direct-access storage."
+    ],
+    "gold_chunks": [
+      "tape storage is referred to as sequential-access storage.",
+      "In contrast, magnetic disk and SSD storage are referred to as direct-access storage because it is possible to read data from any location on disk.",
+      "However, access to data is much slower because the tape must be accessed sequentially from the beginning of the tape; tapes can be very long, requiring tens to hundreds of seconds to access data."
+    ],
+    "optional_chunks": [],
+    "source_id": "c12_w852_876_q000"
+  },
+  {
+    "id": "12.2",
+    "chapter": 12,
+    "difficulty": "easy",
+    "question": "What are the primary functions of a disk controller?",
+    "answer": "A disk controller serves as the interface between the computer system and the disk drive's hardware. Its functions include accepting high-level commands to read or write a sector, attaching checksums to data for error detection, retrying reads if an error is detected, and remapping bad sectors to spare physical locations on the disk.",
+    "must_rubric": [
+      "Must state that the disk controller is an interface between the computer system and the disk hardware.",
+      "Must mention that it accepts high-level read or write commands for sectors."
+    ],
+    "optional_rubric": [
+      "May list or mention some its other functions: attaching checksums, retrying failed reads, or remapping bad sectors."
+    ],
+    "gold_chunks": [
+      "A disk controller interfaces between the computer system and the actual hardware of the disk drive; in modern disk systems, the disk controller is implemented within the disk drive unit.",
+      "A disk controller accepts high-level commands to read or write a sector, and initiates actions, such as moving the disk arm to the right track and actually reading or writing the data."
+    ],
+    "optional_chunks": [
+      "Disk controllers also attach checksums to each sector that is written; the checksum is computed from the data written to the sector.",
+      "When the sector is read back, the controller computes the checksum again from the retrieved data and compares it with the stored checksum; if the data are corrupted, with a high probability the newly computed checksum will not match the stored checksum.",
+      "If such an error occurs, the controller will retry the read several times; if the error continues to occur, the controller will signal a read failure.",
+      "Another interesting task that disk controllers perform is remapping of bad sectors.",
+      "If the controller detects that a sector is damaged when the disk is initially formatted, or when an attempt is made to write the sector, it can logically map the sector to a different physical location (allocated from a pool of extra sectors set aside for this purpose)."
+    ],
+    "chunk_relationships": {
+      "composites": [
+        [
+          "Disk controllers also attach checksums to each sector that is written; the checksum is computed from the data written to the sector.",
+          "When the sector is read back, the controller computes the checksum again from the retrieved data and compares it with the stored checksum; if the data are corrupted, with a high probability the newly computed checksum will not match the stored checksum.",
+          "If such an error occurs, the controller will retry the read several times; if the error continues to occur, the controller will signal a read failure."
+        ],
+        [
+          "Another interesting task that disk controllers perform is remapping of bad sectors.",
+          "If the controller detects that a sector is damaged when the disk is initially formatted, or when an attempt is made to write the sector, it can logically map the sector to a different physical location (allocated from a pool of extra sectors set aside for this purpose)."
+        ]
+      ],
+      "substitutes": []
+    },
+    "source_id": "c12_w852_876_q001"
+  },
+  {
+    "id": "12.3",
+    "chapter": 12,
+    "difficulty": "easy",
+    "question": "In the context of RAID, what is mirroring?",
+    "answer": "Mirroring, also known as shadowing, is a redundancy technique where every disk is duplicated. In a mirrored system, a logical disk is composed of two physical disks, and every write operation is performed on both. This allows data to be read from the second disk if the first one fails, thereby improving reliability.",
+    "must_rubric": [
+      "Must define mirroring as the duplication of data across multiple disks.",
+      "Must state that writes are carried out on both or all disks in the mirrored pair or sets."
+    ],
+    "optional_rubric": [
+      "Must explain that its purpose is redundancy, allowing data to be read from the other disk in case of a failure."
+    ],
+    "gold_chunks": [
+      "The simplest (but most expensive) approach to introducing redundancy is to duplicate every disk.",
+      "This technique is called mirroring (or, sometimes, shadowing).",
+      "A logical disk then consists of two physical disks, and every write is carried out on both disks.",
+      "If one of the disks fails, the data can be read from the other."
+    ],
+    "optional_chunks": [],
+    "chunk_relationships": {
+      "composites": [
+        [
+          "The simplest (but most expensive) approach to introducing redundancy is to duplicate every disk.",
+          "This technique is called mirroring (or, sometimes, shadowing)."
+        ],
+        [
+          "A logical disk then consists of two physical disks, and every write is carried out on both disks.",
+          "If one of the disks fails, the data can be read from the other."
+        ]
+      ],
+      "substitutes": []
+    },
+    "source_id": "c12_w852_876_q002"
+  },
+  {
+    "id": "12.4",
+    "chapter": 12,
+    "difficulty": "medium",
+    "question": "How does a flash memory system handle page updates?",
+    "answer": "Since a page in flash memory cannot be directly overwritten, the system uses a flash translation layer to manage updates. This layer maps logical page numbers to physical page numbers. When a logical page is updated, the new data is written to a different, pre-erased physical page, and the mapping in the translation table is updated. The original physical page is marked as deleted and is later erased as part of a larger erase block, which contains multiple pages. This out-of-place update mechanism avoids the slow process of erasing a single page before writing to it.",
+    "must_rubric": [
+      "Must state that a flash page cannot be directly overwritten and must be erased first.",
+      "Must explain that the erase operation must be  performed on a group of pages that is called an erase block."
+    ],
+    "optional_rubric": [
+      "May describe how flash memory systems counter the slowness of erase blocks by mapping logical page numbers to physical page numbers."
+    ],
+    "gold_chunks": [
+      "However, once written, a page of flash memory cannot be directly overwritten.",
+      "Instead, it has to be erased and rewritten subsequently.",
+      "The erase operation must be performed on a group of pages, called an erase block, erasing all the pages in the block, and takes about 2 to 5 milliseconds."
+    ],
+    "optional_chunks": [
+      "Flash memory systems limit the impact of both the slow erase speed and the update limits by mapping logical page numbers to physical page numbers.",
+      "All the above actions are carried out by a layer of software called the flash translation layer; above this layer, flash storage looks identical to magnetic disk storage, providing the same page/sector-oriented interface, except that flash storage is much faster."
+    ],
+    "chunk_relationships": {
+      "composites": [
+        [
+          "However, once written, a page of flash memory cannot be directly overwritten.",
+          "Instead, it has to be erased and rewritten subsequently."
+        ]
+      ],
+      "substitutes": []
+    },
+    "source_id": "c12_w852_876_q003"
+  },
+  {
+    "id": "12.5",
+    "chapter": 12,
+    "difficulty": "medium",
+    "question": "Compare and contrast bit-level striping and block-level striping in RAID systems.",
+    "answer": "Both bit-level and block-level striping are RAID techniques that improve performance by striping data across multiple disks. Bit-level striping splits the bits of each byte across the disks, meaning every disk must participate in every access. This increases the data-transfer rate for a single large access but does not increase the number of concurrent accesses. In contrast, block-level striping distributes entire blocks across the disks. This allows for parallel reads of multiple blocks for large files and also permits different disks to service separate single-block requests simultaneously, increasing overall I/O throughput. Due to its superior flexibility and performance for mixed workloads, block-level striping is used in practical systems, whereas bit-level striping is not.",
+    "must_rubric": [
+      "Must correctly describe bit-level striping as splitting the bits of each byte across disks.",
+      "Must correctly describe block-level striping as distributing entire blocks across disks.",
+      "Must compare their performance impacts: bit-level striping improves the transfer rate for a single access, while block-level striping improves both large-access transfer rates and the throughput of small, independent accesses."
+    ],
+    "optional_rubric": [
+      "Must identify that both are striping techniques for performance improvement.",
+      "May state that block-level striping is used in practice while bit-level is not."
+    ],
+    "gold_chunks": [
+      "In its simplest form, data striping consists of splitting the bits of each byte across multiple disks; such striping is called bit-level striping.",
+      "Block-level striping stripes blocks across multiple disks.",
+      "When reading a large file, block-level striping fetches n blocks at a time in parallel from the n disks, giving a high data-transfer rate for large reads.",
+      "Block-level striping offers several advantages over bitlevel striping, including the ability to support a larger number of block reads per second, and lower latency for single block reads."
+    ],
+    "optional_chunks": [
+      "With multiple disks, we can improve the transfer rate as well (or instead) by striping data across multiple disks.",
+      "For example, if we have an array of eight disks, we write bit i of each byte to disk i. In such an organization, every disk participates in every access (read or write), so the number of accesses that can be processed per second is about the same as on a single disk, but each access can read eight times as much data in the same time as on a single disk.",
+      "When a single block is read, the datatransfer rate is the same as on one disk, but the remaining n -1 disks are free to perform other actions.",
+      "As a result, bit-level striping is not used in any practical system."
+    ],
+    "example_analogy_chunks": [
+      "For example, if we have an array of eight disks, we write bit i of each byte to disk i. In such an organization, every disk participates in every access (read or write), so the number of accesses that can be processed per second is about the same as on a single disk, but each access can read eight times as much data in the same time as on a single disk."
+    ],
+    "source_id": "c12_w852_876_q004"
+  },
+  {
+    "id": "12.6",
+    "chapter": 12,
+    "difficulty": "medium",
+    "question": "Explain the components of disk access time and how they contribute to the total time required to read or write data from a magnetic disk.",
+    "answer": "The access time for a magnetic disk is the time elapsed from when a read or write request is issued to when the data transfer begins. It is composed of two main components: seek time and rotational latency. Seek time is the mechanical delay caused by moving the disk arm to position the read-write head over the correct track. Rotational latency is the time spent waiting for the disk platter to rotate so that the desired sector is positioned directly under the head. The total access time is the sum of the seek time and the rotational latency, and it represents the overhead incurred before any data can actually be transferred.",
+    "must_rubric": [
+      "Must define access time as the time from request issuance to the start of data transfer.",
+      "Must identify seek time as a component of access time and define it as the time to move the disk arm.",
+      "Must state that the total access time is the sum of seek time and rotational latency.",
+      "Must identify rotational latency as a component of access time and define it as the time waiting for the sector to rotate into position."
+    ],
+    "optional_rubric": [],
+    "gold_chunks": [
+      "Access time is the time from when a read or write request is issued to when data transfer begins.",
+      "To access (i.e., to read or write) data on a given sector of a disk, the arm first must move so that it is positioned over the correct track, and then must wait for the sector to appear under it as the disk rotates.",
+      "The time for repositioning the arm is called the seek time, and it increases with the distance that the arm must move.",
+      "Once the head has reached the desired track, the time spent waiting for the sector to be accessed to appear under the head is called the rotational latency time.",
+      "The access time is then the sum of the seek time and the latency; average access times range from 5 to 20 milliseconds depending on the disk model."
+    ],
+    "optional_chunks": [
+      "Each disk platter has a flat, circular shape. Its two surfaces are covered with a magnetic material, and information is recorded on the surfaces."
+    ],
+    "chunk_relationships": {
+      "composites": [
+        [
+          "The time for repositioning the arm is called the seek time, and it increases with the distance that the arm must move.",
+          "Once the head has reached the desired track, the time spent waiting for the sector to be accessed to appear under the head is called the rotational latency time.",
+          "The access time is then the sum of the seek time and the latency; average access times range from 5 to 20 milliseconds depending on the disk model."
+        ]
+      ],
+      "substitutes": []
+    },
+    "source_id": "c12_w852_876_q005"
+  },
+  {
+    "id": "12.7",
+    "chapter": 12,
+    "difficulty": "hard",
+    "question": "A database administrator is choosing between an SSD and a magnetic disk for a new server. The server's primary workload consists of a high volume of small, random data lookups. Based on their physical mechanisms and performance measures, which storage type is more suitable and why?",
+    "answer": "An SSD is the more suitable choice for a workload with a high volume of small, random data lookups. The key reason lies in the difference in access time. A magnetic disk's performance on random accesses is poor because each lookup requires a mechanical seek operation to move the disk arm and a rotational latency delay for the platter to spin into position, resulting in access times of 5 to 10 milliseconds. In contrast, an SSD has no moving parts and can access any page of data electronically, with a latency of only 20 to 100 microseconds. This fundamental difference in physical operation means an SSD can service a much higher number of random I/O operations per second (IOPS), making it far superior for this type of workload.",
+    "must_rubric": [
+      "Must recommend the SSD as the more suitable choice.",
+      "Must identify that the critical performance metric for this workload is random access time/latency.",
+      "Must explain that a magnetic disk's random access time is high due to mechanical factors, specifically seek time and rotational latency.",
+      "Must connect the lower latency of SSDs to their ability to support a much higher number of I/O operations per second (IOPS).",
+      "Must explain that an SSD's random access time is extremely low because it has no moving parts."
+    ],
+    "optional_rubric": [
+      "May explain that an SSD's random access time is extremely low because it is electronic.",
+      "May use the comparative latency values (milliseconds for disks vs. microseconds for SSDs) to justify the conclusion.",
+      "May note that SSDs can additionally service multiple random requests in parallel, further increasing IOPS/throughput."
+    ],
+    "gold_chunks": [
+      "To access (i.e., to read or write) data on a given sector of a disk, the arm first must move so that it is positioned over the correct track, and then must wait for the sector to appear under it as the disk rotates.",
+      "The time for repositioning the arm is called the seek time, and it increases with the distance that the arm must move.",
+      "The time spent waiting for the sector to be accessed to appear under the head is called the rotational latency time.",
+      "In contrast, in a random access pattern, successive requests are for blocks that are randomly located on disk.",
+      "Each such request would require a seek.",
+      "Compared to magnetic disks, SSDs can provide much faster random access: the latency to retrieve a page of data ranges from 20 to 100 microseconds for SSDs, whereas a random access on disk would take 5 to 10 milliseconds.",
+      "The number of I/O operations per second ( IOPS ), that is, the number random block accesses that can be satisfied by a disk in a second, depends on the access time, and the block size, and the data transfer rate of the disk.",
+      "Solid-state disks (SSDs) are built using NAND flash and provide the same block-oriented interface as disk storage.",
+      "Unlike magnetic disks, SSDs can support multiple random requests in parallel, with 32 parallel requests being commonly supported; a flash disk with SATA interface supports nearly 100,000 random 4-kilobyte block reads in a second with 32 requests sent in parallel, while SSDs connected using NVMe PCIe can support over 350,000 random 4-kilobyte block reads per second."
+    ],
+    "optional_chunks": [
+      "A solid-state drive ( SSD ) uses flash memory internally to store data but provides an interface similar to a magnetic disk, allowing data to be stored or retrieved in units of a block; such an interface is called a block-oriented interface."
+    ],
+    "chunk_relationships": {
+      "composites": [
+        [
+          "In contrast, in a random access pattern, successive requests are for blocks that are randomly located on disk.",
+          "Each such request would require a seek."
+        ]
+      ],
+      "substitutes": []
+    },
+    "source_id": "c12_w852_876_q006"
+  },
+  {
+    "id": "12.8",
+    "chapter": 12,
+    "difficulty": "hard",
+    "question": "A system uses RAID with mirroring, where a single disk has a mean time to failure (MTTF) of 50,000 hours and a mean time to repair of 4 hours. What is the mean time to data loss of a mirrored disk system for this mirrored system? Why is the mean time to data loss for the mirrored system significantly higher than the MTTF of a single disk, and what underlying assumption is critical for this high reliability?",
+    "answer": "The mean time to data loss in a mirrored system is 312,500,000 (or 312.5 * 10^6) hours. This is vastly higher than a single disk's MTTF because data loss occurs only if the second disk fails during the brief window when the first failed disk is being repaired. Since every write is duplicated, the failure of one disk does not cause data loss; the system continues to operate using the mirrored copy. The probability of the second disk also failing within the short 4-hour mean time to repair is extremely low. The critical assumption for calculating this high level of reliability is that the failures of the two disks are independent events. If a single event, like a power failure or natural disaster, could cause both disks to fail simultaneously, this assumption would be violated and the actual reliability would be much lower than the calculated value.",
+    "must_rubric": [
+      "Must explain that data loss only occurs if the second disk fails while the first is being repaired.",
+      "Must contrast the short repair window (mean time to repair) with the long operational life of a disk (MTTF) to explain why the probability of data loss is very low.",
+      "Must identify the critical assumption as the independence of disk failures.",
+      "Must mention the mirrored disk system's mean time to data loss is 312,500,000 (or 312.5 * 10^6) hours. The value can be written in any other format as long as it is approximately 312 million hours."
+    ],
+    "optional_rubric": [
+      "May provide an example of a non-independent failure event, such as a power failure or natural disaster."
+    ],
+    "gold_chunks": [
+      "This technique is called mirroring (or, sometimes, shadowing).",
+      "If one of the disks fails, the data can be read from the other.",
+      "Data will be lost only if the second disk fails before the first failed disk is repaired.",
+      "The mean time to failure (where failure is the loss of data) of a mirrored disk depends on the mean time to failure of the individual disks, as well as on the mean time to repair, which is the time it takes (on an average) to replace a failed disk and to restore the data on it.",
+      "Suppose that the failures of the two disks are independent; that is, there is no connection between the failure of one disk and the failure of the other.",
+      "Then, if the mean time to failure of a single disk is 100,000 hours, and the mean time to repair is 10 hours, the mean time to data loss of a mirrored disk system is 100,000 2 /(2 * 10) = 500 * 10 6 hours, or 57,000 years!",
+      "You should be aware that the assumption of independence of disk failures is not valid."
+    ],
+    "optional_chunks": [
+      "Power failures and natural disasters such as earthquakes, fires, and floods may result in damage to both disks at the same time."
+    ],
+    "chunk_relationships": {
+      "composites": [
+        [
+          "This technique is called mirroring (or, sometimes, shadowing).",
+          "If one of the disks fails, the data can be read from the other.",
+          "Data will be lost only if the second disk fails before the first failed disk is repaired."
+        ],
+        [
+          "Suppose that the failures of the two disks are independent; that is, there is no connection between the failure of one disk and the failure of the other.",
+          "Then, if the mean time to failure of a single disk is 100,000 hours, and the mean time to repair is 10 hours, the mean time to data loss of a mirrored disk system is 100,000 2 /(2 * 10) = 500 * 10 6 hours, or 57,000 years!",
+          "You should be aware that the assumption of independence of disk failures is not valid."
+        ]
+      ],
+      "substitutes": []
+    },
+    "source_id": "c12_w852_876_q007"
+  },
+  {
+    "id": "16.1",
+    "chapter": 16,
+    "difficulty": "easy",
+    "question": "What is query optimization?",
+    "answer": "Query optimization is the process of choosing the most efficient query-evaluation plan from the many strategies available for processing a query. The system, not the user, is expected to construct a plan that minimizes the cost of query evaluation.",
+    "must_rubric": [
+      "Must define query optimization as the process of selecting the most efficient query-evaluation plan.",
+      "Must state that the goal is to minimize the cost of query evaluation."
+    ],
+    "optional_rubric": [
+      "Must mention that this is a system responsibility, not a user's."
+    ],
+    "gold_chunks": [
+      "Query optimization is the process of selecting the most efficient query-evaluation plan from among the many strategies usually possible for processing a given query, especially if the query is complex."
+    ],
+    "optional_chunks": [
+      "We do not expect users to write their queries so that they can be processed efficiently.",
+      "Rather, we expect the system to construct a queryevaluation plan that minimizes the cost of query evaluation."
+    ],
+    "source_id": "c16_w1141_1165_q000"
+  },
+  {
+    "id": "16.2",
+    "chapter": 16,
+    "difficulty": "easy",
+    "question": "What is an evaluation plan in the context of query processing?",
+    "answer": "An evaluation plan defines the specific algorithm to be used for each operation within a query and dictates how the execution of those operations should be coordinated.",
+    "must_rubric": [
+      "Must state that an evaluation plan defines the specific algorithm for each operation.",
+      "Must state that it also defines how the execution of operations is coordinated."
+    ],
+    "optional_rubric": [],
+    "gold_chunks": [
+      "An evaluation plan defines exactly what algorithm should be used for each operation and how the execution of the operations should be coordinated."
+    ],
+    "optional_chunks": [],
+    "source_id": "c16_w1141_1165_q001"
+  },
+  {
+    "id": "16.3",
+    "chapter": 16,
+    "difficulty": "easy",
+    "question": "What does it mean for two relational-algebra expressions to be equivalent?",
+    "answer": "Two relational-algebra expressions are considered equivalent if they generate the exact same set of tuples on every legal database instance. The order in which the tuples are generated is irrelevant for equivalence.",
+    "must_rubric": [
+      "Must state that equivalent expressions generate the same set of tuples.",
+      "Must specify that this must hold for every legal database instance.",
+      "Must mention that the order of tuples is irrelevant."
+    ],
+    "optional_rubric": [],
+    "gold_chunks": [
+      "Two relational-algebra expressions are said to be equivalent if, on every legal database instance, the two expressions generate the same set of tuples.",
+      "Note that the order of the tuples is irrelevant; the two expressions may generate the tuples in different orders, but would be considered equivalent as long as the set of tuples is the same."
+    ],
+    "optional_chunks": [],
+    "chunk_relationships": {
+      "composites": [
+        [
+          "Two relational-algebra expressions are said to be equivalent if, on every legal database instance, the two expressions generate the same set of tuples.",
+          "Note that the order of the tuples is irrelevant; the two expressions may generate the tuples in different orders, but would be considered equivalent as long as the set of tuples is the same."
+        ]
+      ],
+      "substitutes": []
+    },
+    "source_id": "c16_w1141_1165_q002"
+  },
+  {
+    "id": "16.4",
+    "chapter": 16,
+    "difficulty": "easy",
+    "question": "What statistical information about database relations is typically stored in a database-system catalog for query optimization?",
+    "answer": "A database-system catalog typically stores several key statistics for query optimization: n_r (the number of tuples), b_r (the number of blocks), l_r (the size of a tuple in bytes), f_r (the blocking factor, or tuples per block), and V(A, r) (the number of distinct values for a given attribute A).",
+    "must_rubric": [
+      "Must list all of the following statistics: number of tuples (n_r), number of blocks (b_r), tuple size (l_r), blocking factor (f_r), or number of distinct values (V(A,r))."
+    ],
+    "optional_rubric": [],
+    "gold_chunks": [
+      "n r , the number of tuples in the relation r .",
+      "b r , the number of blocks containing tuples of relation r .",
+      "l r , the size of a tuple of relation r in bytes.",
+      "f r , the blocking factor of relation rthat is, the number of tuples of relation r that fit into one block.",
+      "V ( A , r ), the number of distinct values that appear in the relation r for attribute A .",
+      "The database-system catalog stores the following statistical information about database relations:"
+    ],
+    "optional_chunks": [
+      "The last statistic, V ( A , r ), can also be maintained for sets of attributes, if desired, instead of just for individual attributes."
+    ],
+    "chunk_relationships": {
+      "composites": [
+        [
+          "n r , the number of tuples in the relation r .",
+          "b r , the number of blocks containing tuples of relation r .",
+          "l r , the size of a tuple of relation r in bytes.",
+          "f r , the blocking factor of relation rthat is, the number of tuples of relation r that fit into one block.",
+          "V ( A , r ), the number of distinct values that appear in the relation r for attribute A .",
+          "The database-system catalog stores the following statistical information about database relations:"
+        ]
+      ],
+      "substitutes": []
+    },
+    "source_id": "c16_w1141_1165_q003"
+  },
+  {
+    "id": "16.5",
+    "chapter": 16,
+    "difficulty": "easy",
+    "question": "In a query evaluation plan, what is the difference between pipelined edges and materialized edges?",
+    "answer": "In a query evaluation plan, pipelined and materialized edges describe how data is passed between operations. With pipelined edges, the output of one operation (the producer) is sent directly to the next operation (the consumer) without being stored on disk. In contrast, with materialized edges, the output of the producer is first written to disk as an intermediate result, and the consumer then reads this result from the disk.",
+    "must_rubric": [
+      "Must define pipelined edges as passing data directly to the consumer without writing to disk.",
+      "Must define materialized edges as writing output to disk before the consumer reads it."
+    ],
+    "optional_rubric": [],
+    "gold_chunks": [
+      "With pipelined edges the output of the producer is sent directly to the consumer, without being written out to disk; with materialized edges, on the other hand, the output is written to disk, and then read from the disk by the consumer."
+    ],
+    "optional_chunks": [],
+    "source_id": "c16_w1141_1165_q004"
+  },
+  {
+    "id": "16.7",
+    "chapter": 16,
+    "difficulty": "medium",
+    "question": "Why is the ordering of join operations a critical part of query optimization? Give an example illustrating this.",
+    "answer": "The ordering of join operations is critical for query optimization because a good ordering can significantly reduce the size of temporary results. For example, when joining instructors, teaches, and courses to find courses taught by Music instructors, it is better to first join the small set of 'Music' instructors with the 'teaches' relation. This creates a small intermediate result of courses taught by Music instructors. Joining the large 'teaches' and 'course' relations first would create a very large intermediate relation containing every course ever taught, making the overall query much more expensive.",
+    "must_rubric": [
+      "Must state that join ordering is important for reducing the size of temporary/intermediate results.",
+      "Must use an example to illustrate that performing a selection early to create a smaller relation before a join is more efficient.",
+      "Must correctly identify which intermediate relation is likely to be larger or smaller in the example."
+    ],
+    "optional_rubric": [],
+    "gold_chunks": [
+      "A good ordering of join operations is important for reducing the size of temporary results; hence, most query optimizers pay a lot of attention to the join order.",
+      "We could choose to compute teaches ⋈ Π course\\_id,title ( course ) first, and then to join the result with: σ dept\\_name='Music' (instructor)",
+      "However, teaches ⋈ Π course\\_id,title ( course ) is likely to be a large relation, since it contains one tuple for every course taught.",
+      "In contrast: σ dept\\_name='Music' (instructor) ⋈ teaches is probably a small relation.",
+      "Thus, the preceding expression results in one tuple for each course taught by an instructor in the Music department.",
+      "Therefore, the temporary relation that we must store is smaller than it would have been had we computed teaches ⋈ Π course\\_id,title ( course ) first."
+    ],
+    "optional_chunks": [],
+    "example_analogy_chunks": [
+      "We could choose to compute teaches ⋈ Π course\\_id,title ( course ) first, and then to join the result with: σ dept\\_name='Music' (instructor)",
+      "However, teaches ⋈ Π course\\_id,title ( course ) is likely to be a large relation, since it contains one tuple for every course taught.",
+      "In contrast: σ dept\\_name='Music' (instructor) ⋈ teaches is probably a small relation.",
+      "Thus, the preceding expression results in one tuple for each course taught by an instructor in the Music department.",
+      "Therefore, the temporary relation that we must store is smaller than it would have been had we computed teaches ⋈ Π course\\_id,title ( course ) first."
+    ],
+    "chunk_relationships": {
+      "composites": [
+        [
+          "We could choose to compute teaches ⋈ Π course\\_id,title ( course ) first, and then to join the result with: σ dept\\_name='Music' (instructor)",
+          "However, teaches ⋈ Π course\\_id,title ( course ) is likely to be a large relation, since it contains one tuple for every course taught.",
+          "In contrast: σ dept\\_name='Music' (instructor) ⋈ teaches is probably a small relation.",
+          "Thus, the preceding expression results in one tuple for each course taught by an instructor in the Music department.",
+          "Therefore, the temporary relation that we must store is smaller than it would have been had we computed teaches ⋈ Π course\\_id,title ( course ) first."
+        ]
+      ],
+      "substitutes": []
+    },
+    "source_id": "c16_w1141_1165_q006"
+  },
+  {
+    "id": "16.8",
+    "chapter": 16,
+    "difficulty": "hard",
+    "question": "Consider three relations r with attributes ID and Code containing the tuple 101 and 202, s with attributes Code and Val containing the tuple 202 and 303, and t with attributes ID and Val which is an empty relation with no tuples. Using the conceptual execution model for natural left outer joins, demonstrate why the expression where r and s are joined first and then joined with t is not equivalent to joining s and t first and then joining that result with r. Your explanation must trace the intermediate results and the specific values for all three attributes to show how the final outputs differ.",
+    "answer": "The expression joining r and s first creates an intermediate tuple with values 101, 202, and 303 for attributes ID, Code, and Val because they share the Code value 202. When this result is left outer joined with the empty relation t, the join condition fails because t has no data, but because it is a left outer join, the values 101, 202, and 303 from the left side are preserved, resulting in the final tuple 101, 202, 303. In the second expression, s is first joined with the empty relation t, which preserves s and pads the attributes of t with nulls, creating an intermediate tuple where Code is 202, Val is 303, and ID is null. When r is joined with this intermediate result, the natural join requires a match on both shared attributes ID and Code. While the Code values match at 202, the ID value in r is 101 while the ID value in the intermediate result is null. Because 101 does not match null, the join fails and the tuple from r is preserved while the attributes from the right side are padded with nulls, resulting in the final tuple 101, 202, null. Because the first expression results in the value 303 for the Val attribute and the second results in a null, the operation is shown to be non-associative.",
+    "must_rubric": [
+      "Correctly identifies the intermediate tuple for the join of r and s as 101, 202, 303.",
+      "Correctly identifies the final result of the first expression as 101, 202, 303.",
+      "Correctly identifies that the join of s and t produces an intermediate tuple where the ID attribute is null.",
+      "Explains that the second join fails because the value 101 does not match the null value for the ID attribute.",
+      "Correctly identifies the final result of the second expression as 101, 202, null.",
+      "Concludes non-associativity by explicitly pointing out the difference in the Val attribute between the two results."
+    ],
+    "optional_rubric": [],
+    "gold_chunks": [
+      "Let relation r(A, B ) be a relation consisting of the single tuple (1, 1), s(B, C ) be a relation consisting of the single tuple (1, 1), and t(A, C ) be an empty relation with no tuples.",
+      "We shall show that for this example, ( r ⟕ s ) ⟕ t ≠ r ⟕ ( s ⟕ t )",
+      "To see this, note first that ( r ⟕ s ) produces a result with schema ( A , B , C ) having one tuple (1, 1, 1).",
+      "Computing the left outer join of that result with relation t produces a result with schema ( A , B , C ) having one tuple (1, 1, 1).",
+      "Next, we look at the expression r ⟕ ( s ⟕ t ), and note that s ⟕ t produces a result with schema ( A , B , C ) having one tuple ( null, 1, 1).",
+      "Computing the left outer join of r with that result produces a result with schema ( A , B , C ) having one tuple (1, 1, null )."
+    ],
+    "optional_chunks": [
+      "As another example, unlike inner joins, outer joins are not associative."
+    ],
+    "chunk_relationships": {
+      "composites": [
+        [
+          "As another example, unlike inner joins, outer joins are not associative.",
+          "Let relation r(A, B ) be a relation consisting of the single tuple (1, 1), s(B, C ) be a relation consisting of the single tuple (1, 1), and t(A, C ) be an empty relation with no tuples.",
+          "We shall show that for this example, ( r ⟕ s ) ⟕ t ≠ r ⟕ ( s ⟕ t )",
+          "To see this, note first that ( r ⟕ s ) produces a result with schema ( A , B , C ) having one tuple (1, 1, 1).",
+          "Computing the left outer join of that result with relation t produces a result with schema ( A , B , C ) having one tuple (1, 1, 1).",
+          "Next, we look at the expression r ⟕ ( s ⟕ t ), and note that s ⟕ t produces a result with schema ( A , B , C ) having one tuple ( null, 1, 1).",
+          "Computing the left outer join of r with that result produces a result with schema ( A , B , C ) having one tuple (1, 1, null )."
+        ]
+      ],
+      "substitutes": []
+    },
+    "source_id": "c16_w1141_1165_q007"
+  },
+  {
+    "id": "17.1",
+    "chapter": 17,
+    "difficulty": "easy",
+    "question": "In the context of a database system, what is a transaction?",
+    "answer": "A transaction is a collection of operations that form a single logical unit of work. It can also be described as a unit of program execution that accesses and possibly updates various data items. For example, transferring funds from one account to another is considered a single transaction, even though it involves multiple database operations.",
+    "must_rubric": [
+      "Must define a transaction as a single logical unit of work.",
+      "May also define it as a unit of program execution that accesses or updates data."
+    ],
+    "optional_rubric": [],
+    "gold_chunks": [
+      "The term transaction refers to a collection of operations that form a single logical unit of work.",
+      "A transaction is a unit of program execution that accesses and possibly updates various data items."
+    ],
+    "optional_chunks": [],
+    "chunk_relationships": {
+      "composites": [],
+      "substitutes": [
+        [
+          "The term transaction refers to a collection of operations that form a single logical unit of work.",
+          "A transaction is a unit of program execution that accesses and possibly updates various data items."
+        ]
+      ]
+    },
+    "source_id": "c17_w1226_1250_q000"
+  },
+  {
+    "id": "17.2",
+    "chapter": 17,
+    "difficulty": "easy",
+    "question": "What are the four properties of transactions known by the acronym ACID?",
+    "answer": "The four properties, known as the ACID properties, are Atomicity, Consistency, Isolation, and Durability. Atomicity ensures that either all operations of a transaction are reflected in the database, or none are. Consistency means that a transaction's execution in isolation preserves the database's consistency. Isolation guarantees that for any pair of concurrent transactions, it appears that one finished before the other started. Durability ensures that after a transaction completes successfully, its changes persist, even through system failures.",
+    "must_rubric": [
+      "Must list all four properties: Atomicity, Consistency, Isolation, and Durability.",
+      "Must define Atomicity as transactions being indivisible units wherein either all operations of a transaction are reflected or none are. This may be defined using different  words but the idea must be this.",
+      "Must define Consistency as the execution of a transaction in isolation preserving the consistent state of the database. This means if the database was in a consistent state before the transaction started, then it should be in a consistent state after the transaction finished.",
+      "Must define isolation as each transaction operating (even when in parallel) as if other transactions finished before it started or that they will start after it finished.",
+      "Must define durability as the persistence of a transactions changes even in cases of system failures. "
+    ],
+    "optional_rubric": [],
+    "gold_chunks": [
+      "Atomicity . Either all operations of the transaction are reflected properly in the database, or none are.",
+      "Consistency . Execution of a transaction in isolation (i.e., with no other transaction executing concurrently) preserves the consistency of the database.",
+      "Isolation . Even though multiple transactions may execute concurrently, the system guarantees that, for every pair of transactions T i and T j , it appears to T i that either T j finished execution before T i started or T j started execution after T i finished.",
+      "Durability . After a transaction completes successfully, the changes it has made to the database persist, even if there are system failures."
+    ],
+    "optional_chunks": [],
+    "source_id": "c17_w1226_1250_q001"
+  },
+  {
+    "id": "17.3",
+    "chapter": 17,
+    "difficulty": "easy",
+    "question": "What is the key difference between volatile storage and non-volatile storage?",
+    "answer": "The key difference is that information in volatile storage, such as main memory, does not usually survive system crashes. In contrast, information residing in non-volatile storage, such as a magnetic disk, survives system crashes.",
+    "must_rubric": [
+      "Must state that volatile storage does not survive system crashes.",
+      "Must state that non-volatile storage does survive system crashes."
+    ],
+    "optional_rubric": [],
+    "gold_chunks": [
+      "Volatile storage . Information residing in volatile storage does not usually survive system crashes.",
+      "Non-volatile storage . Information residing in nonvolatile storage survives system crashes."
+    ],
+    "optional_chunks": [],
+    "source_id": "c17_w1226_1250_q002"
+  },
+  {
+    "id": "17.4",
+    "chapter": 17,
+    "difficulty": "medium",
+    "question": "What are the two primary benefits of allowing concurrent execution of transactions over serial execution? Explain them.",
+    "answer": "There are two main reasons for allowing concurrency. The first is improved throughput and resource utilization. By exploiting the parallelism of the CPU and I/O systems, multiple transactions can run in parallel, which increases the number of transactions executed in a given amount of time and reduces idle time for the processor and disks. The second reason is reduced waiting time. In a serial system, a short transaction may have to wait for a long one to finish. Concurrent execution reduces these unpredictable delays and lowers the average response time for a transaction to be completed after submission.",
+    "must_rubric": [
+      "Must identify 'improved throughput and resource utilization' as one benefit.",
+      "Must explain that this is achieved by parallelizing CPU and I/O operations.",
+      "Must identify 'reduced waiting time' as the second benefit.",
+      "Must explain that this avoids short transactions being blocked by long ones and reduces average response time."
+    ],
+    "optional_rubric": [],
+    "gold_chunks": [
+      "However, there are two good reasons for allowing concurrency:",
+      "Improved throughput and resource utilization .",
+      "The parallelism of the CPU and the I/O system can therefore be exploited to run multiple transactions in parallel.",
+      "All of this increases the throughput of the system-that is, the number of transactions executed in a given amount of time.",
+      "Correspondingly, the processor and disk utilization also increase; in other words, the processor and disk spend less time idle, or not performing any useful work.",
+      "If transactions run serially, a short transaction may have to wait for a preceding long transaction to complete, which can lead to unpredictable delays in running a transaction.",
+      "Concurrent execution reduces the unpredictable delays in running transactions.",
+      "Moreover, it also reduces the average response time : the average time for a transaction to be completed after it has been submitted."
+    ],
+    "optional_chunks": [
+      "Reduced waiting time ."
+    ],
+    "chunk_relationships": {
+      "composites": [
+        [
+          "However, there are two good reasons for allowing concurrency:",
+          "Improved throughput and resource utilization ."
+        ],
+        [
+          "Reduced waiting time .",
+          "If transactions run serially, a short transaction may have to wait for a preceding long transaction to complete, which can lead to unpredictable delays in running a transaction."
+        ]
+      ],
+      "substitutes": []
+    },
+    "source_id": "c17_w1226_1250_q003"
+  },
+  {
+    "id": "17.5",
+    "chapter": 17,
+    "difficulty": "medium",
+    "question": "Describe the five states of the abstract transaction model and the typical transitions between them.",
+    "answer": "A transaction starts in the 'active' state while it is executing. Once it finishes its final statement, it enters the 'partially committed' state. At this point, if the system successfully writes out enough information to disk to recover the transaction's updates in case of a failure, the transaction enters the 'committed' state. If at any point normal execution cannot proceed, the transaction enters the 'failed' state. A failed transaction must be rolled back, after which it enters the 'aborted' state, where the database has been restored to its state prior to the transaction's start.",
+    "must_rubric": [
+      "Must name all five states: active, partially committed, committed, failed, and aborted.",
+      "Must describe the successful path from active to partially committed to committed after it has executed its final statement or command.",
+      "Must describe the failure path from active or partially committed to failed if there is an issue in the execution of a statement or command, and then to aborted after a rollback is successfully done.",
+      "Must define active state as the initial state and the state of the transaction during execution.",
+      "Must define \"partially committed\" state as the state after execution of the last statement.",
+      "Must define \"failed\" state as detecting some error or issue with normal execution.",
+      "Must define \"Aborted\" state as having handled the rollback that happens after failure and the database has been restored to the correct state.",
+      "Must define \"Committed\" state as the state after a transaction successfully completes its execution."
+    ],
+    "optional_rubric": [],
+    "gold_chunks": [
+      "Active , the initial state; the transaction stays in this state while it is executing.",
+      "Partially committed , after the final statement has been executed.",
+      "Failed , after the discovery that normal execution can no longer proceed.",
+      "Aborted , after the transaction has been rolled back and the database has been restored to its state prior to the start of the transaction.",
+      "Committed , after successful completion.",
+      "A transaction starts in the active state.",
+      "When it finishes its final statement, it enters the partially committed state.",
+      "When the last of this information is written out, the transaction enters the committed state.",
+      "A transaction enters the failed state after the system determines that the transaction can no longer proceed with its normal execution (e.g., because of hardware or logical errors).",
+      "Such a transaction must be rolled back.",
+      "Then, it enters the aborted state."
+    ],
+    "optional_chunks": [],
+    "chunk_relationships": {
+      "composites": [
+        [
+          "A transaction starts in the active state.",
+          "When it finishes its final statement, it enters the partially committed state.",
+          "When the last of this information is written out, the transaction enters the committed state.",
+          "A transaction enters the failed state after the system determines that the transaction can no longer proceed with its normal execution (e.g., because of hardware or logical errors).",
+          "Such a transaction must be rolled back.",
+          "Then, it enters the aborted state."
+        ]
+      ],
+      "substitutes": []
+    },
+    "source_id": "c17_w1226_1250_q004"
+  },
+  {
+    "id": "17.6",
+    "chapter": 17,
+    "difficulty": "hard",
+    "question": "A banking system records a successful \"Commit\" for a transaction on a single high-end SSD. Moments later, a hardware controller failure renders that specific SSD unreadable. Using the conceptual definitions of non-volatile and stable storage, explain whether the Durability property was truly satisfied in this scenario and identify the specific storage deficiency that led to this outcome.",
+    "answer": "In this scenario, the Durability property was not truly satisfied for a high-value application because the transaction's changes were only stored on non-volatile storage, not stable storage. While non-volatile storage like an SSD survives system crashes, it remains susceptible to hardware failures that cause total information loss. The system failed to approximate stable storage because it lacked replication across media with independent failure modes. Because the single copy of the data became unrecoverable after the commit, the guarantee that successful changes persist despite failures was broken.",
+    "must_rubric": [
+      "Must state that Durability was not satisfied because the data was lost after a successful commit.",
+      "Must distinguish that non-volatile storage only guarantees survival of system crashes, not device failures.",
+      "Must explain that achieving stable storage requires replication across multiple media."
+    ],
+    "optional_rubric": [
+      "Must identify that the lack of independent failure modes (using only one disk) is the specific deficiency."
+    ],
+    "gold_chunks": [
+      "Durability . After a transaction completes successfully, the changes it has made to the database persist, even if there are system failures.",
+      "For a transaction to be durable, its changes need to be written to stable storage.",
+      "Stable storage . Information residing in stable storage is never lost ( never should be taken with a grain of salt, since theoretically never cannot be guaranteed-for example, it is possible, although extremely unlikely, that a black hole may envelop the earth and permanently destroy all data!).",
+      "To implement stable storage, we replicate the information in several non-volatile storage media (usually disk) with independent failure modes.",
+      "Non-volatile storage . Information residing in nonvolatile storage survives system crashes.",
+      "Both secondary and tertiary storage devices, however, are susceptible to failures that may result in loss of information.",
+      "In some cases, a single copy on disk is considered sufficient, but applications whose data are highly valuable and whose transactions are highly important require multiple copies, or, in other words, a closer approximation of the idealized concept of stable storage."
+    ],
+    "optional_chunks": [],
+    "source_id": "c17_w1226_1250_q005"
+  },
+  {
+    "id": "18.1",
+    "chapter": 18,
+    "difficulty": "easy",
+    "question": "What are the two modes of locks discussed for lock-based protocols, and what actions does each mode permit?",
+    "answer": "The two primary lock modes are Shared and Exclusive. If a transaction holds a shared-mode lock (S) on a data item, it can read but not write to that item. If it holds an exclusive-mode lock (X), it can both read and write the item.",
+    "must_rubric": [
+      "Must identify the two lock modes as Shared and Exclusive.",
+      "Must state that a Shared lock permits reading but not writing.",
+      "Must state that an Exclusive lock permits both reading and writing."
+    ],
+    "optional_rubric": [],
+    "gold_chunks": [
+      "1.  Shared . If a transaction T i has obtained a sharedmode lock (denoted by S) on item Q, then T i can read, but cannot write, Q.",
+      "2.  Exclusive . If a transaction T i has obtained an exclusive-mode lock (denoted by X) on item Q , then T i can both read and write Q ."
+    ],
+    "optional_chunks": [
+      "There are various modes in which a data item may be locked.",
+      "In this section, we restrict our attention to two modes:"
+    ],
+    "source_id": "c18_w1285_1309_q000"
+  },
+  {
+    "id": "18.2",
+    "chapter": 18,
+    "difficulty": "easy",
+    "question": "What are the two phases of the two-phase locking protocol?",
+    "answer": "The two-phase locking protocol divides a transaction's execution into two distinct phases. The first is the 'growing phase,' during which the transaction may obtain locks but is not allowed to release any. The second is the 'shrinking phase,' which begins once the transaction releases its first lock; in this phase, the transaction may release locks but cannot obtain any new ones.",
+    "must_rubric": [
+      "Must identify the two phases as the growing phase and the shrinking phase.",
+      "Must describe the growing phase as a period for obtaining locks without releasing any.",
+      "Must describe the shrinking phase as a period for releasing locks without obtaining new ones."
+    ],
+    "optional_rubric": [],
+    "gold_chunks": [
+      "1. Growing phase . A transaction may obtain locks, but may not release any lock.",
+      "2. Shrinking phase . A transaction may release locks, but may not obtain any new locks."
+    ],
+    "optional_chunks": [
+      "One protocol that ensures serializability is the two-phase locking protocol . This protocol requires that each transaction issue lock and unlock requests in two phases:",
+      "Once the transaction releases a lock, it enters the shrinking phase, and it can issue no more lock requests."
+    ],
+    "source_id": "c18_w1285_1309_q001"
+  },
+  {
+    "id": "18.3",
+    "chapter": 18,
+    "difficulty": "easy",
+    "question": "What is the difference between the strict two-phase locking protocol and the rigorous two-phase locking protocol?",
+    "answer": "Both are variants of two-phase locking that hold locks until a transaction commits. The strict two-phase locking protocol requires that all exclusive-mode locks acquired by a transaction are held until that transaction commits. The rigorous two-phase locking protocol is more restrictive, requiring that all locks, including both shared and exclusive-mode locks, be held until the transaction commits.",
+    "must_rubric": [
+      "Must state that strict two-phase locking requires holding all exclusive-mode locks until commit.",
+      "Must state that rigorous two-phase locking requires holding all locks (both shared and exclusive) until commit."
+    ],
+    "optional_rubric": [
+      "May identify that rigorous two-phase locking is the more restrictive of the two."
+    ],
+    "gold_chunks": [
+      "This protocol requires not only that locking be two phase, but also that all exclusive-mode locks taken by a transaction be held until that transaction commits.",
+      "Another variant of two-phase locking is the rigorous twophase locking protocol , which requires that all locks be held until the transaction commits."
+    ],
+    "optional_chunks": [
+      "Cascading rollbacks can be avoided by a modification of two-phase locking called the strict two-phase locking protocol ."
+    ],
+    "chunk_relationships": {
+      "composites": [
+        [
+          "Cascading rollbacks can be avoided by a modification of two-phase locking called the strict two-phase locking protocol .",
+          "This protocol requires not only that locking be two phase, but also that all exclusive-mode locks taken by a transaction be held until that transaction commits."
+        ]
+      ],
+      "substitutes": []
+    },
+    "source_id": "c18_w1285_1309_q002"
+  },
+  {
+    "id": "18.4",
+    "chapter": 18,
+    "difficulty": "medium",
+    "question": "Explain the problem of starvation when granting locks and describe the mechanism used to prevent it.",
+    "answer": "Starvation is a situation where a transaction may never make progress because its lock request is perpetually denied. For example, if a transaction T1 requests an exclusive lock on an item, it must wait for any existing shared locks to be released. If a continuous stream of new transactions request and are granted shared locks on that same item, T1's request for an exclusive lock might never be granted. This can be avoided by managing lock requests in a queue. A transaction Ti's lock request on an item Q is granted only if there are no conflicting locks on Q AND there is no other transaction that requested a lock on Q before Ti and is still waiting. This ensures a lock request will never be blocked by a request that is made later.",
+    "must_rubric": [
+      "Must define starvation as a state where a transaction's lock request is never granted.",
+      "Must explain that the solution involves ensuring earlier requests are not blocked by later ones.",
+      "Must state the two conditions for granting a lock: no conflicting locks are held, and no earlier transaction is waiting for a lock on the same item."
+    ],
+    "optional_rubric": [
+      "May provide an example, such as an exclusive lock request being repeatedly blocked by a stream of shared lock requests."
+    ],
+    "gold_chunks": [
+      "Suppose a transaction T 2  has a shared-mode lock on a data item, and another transaction T 1  requests an exclusive-mode lock on the data item.",
+      "T 1  has to wait for T 2 to release the sharedmode lock.",
+      "Meanwhile, a transaction T 3 may request a shared-mode lock on the same data item.",
+      "The lock request is compatible with the lock granted to T 2 , so T 3  may be granted the shared-mode lock.",
+      "In fact, it is possible that there is a sequence of transactions that each requests a sharedmode lock on the data item, and each transaction releases the lock a short while after it is granted, but T 1  never gets the exclusive-mode lock on the data item.",
+      "The transaction T 1  may never make progress, and is said to be starved .",
+      "We can avoid starvation of transactions by granting locks in the following manner: When a transaction T i requests a lock on a data item Q in a particular mode M, the concurrency-control manager grants the lock provided that:",
+      "- There is no other transaction holding a lock on Q in a mode that conflicts with M .",
+      "- There is no other transaction that is waiting for a lock on Q and that made its lock request before T i ."
+    ],
+    "optional_chunks": [
+      "Thus, a lock request will never get blocked by a lock request that is made later."
+    ],
+    "example_analogy_chunks": [
+      "Suppose a transaction T 2  has a shared-mode lock on a data item, and another transaction T 1  requests an exclusive-mode lock on the data item.",
+      "T 1  has to wait for T 2 to release the sharedmode lock.",
+      "Meanwhile, a transaction T 3 may request a shared-mode lock on the same data item.",
+      "The lock request is compatible with the lock granted to T 2 , so T 3  may be granted the shared-mode lock.",
+      "In fact, it is possible that there is a sequence of transactions that each requests a sharedmode lock on the data item, and each transaction releases the lock a short while after it is granted, but T 1  never gets the exclusive-mode lock on the data item.",
+      "The transaction T 1  may never make progress, and is said to be starved ."
+    ],
+    "chunk_relationships": {
+      "composites": [
+        [
+          "Suppose a transaction T 2  has a shared-mode lock on a data item, and another transaction T 1  requests an exclusive-mode lock on the data item.",
+          "T 1  has to wait for T 2 to release the sharedmode lock.",
+          "Meanwhile, a transaction T 3 may request a shared-mode lock on the same data item.",
+          "The lock request is compatible with the lock granted to T 2 , so T 3  may be granted the shared-mode lock.",
+          "In fact, it is possible that there is a sequence of transactions that each requests a sharedmode lock on the data item, and each transaction releases the lock a short while after it is granted, but T 1  never gets the exclusive-mode lock on the data item.",
+          "The transaction T 1  may never make progress, and is said to be starved ."
+        ],
+        [
+          "We can avoid starvation of transactions by granting locks in the following manner: When a transaction T i requests a lock on a data item Q in a particular mode M, the concurrency-control manager grants the lock provided that:",
+          "- There is no other transaction holding a lock on Q in a mode that conflicts with M .",
+          "- There is no other transaction that is waiting for a lock on Q and that made its lock request before T i .",
+          "Thus, a lock request will never get blocked by a lock request that is made later."
+        ]
+      ],
+      "substitutes": []
+    },
+    "source_id": "c18_w1285_1309_q003"
+  },
+  {
+    "id": "18.5",
+    "chapter": 18,
+    "difficulty": "medium",
+    "question": "Compare the two-phase locking protocol with the tree-locking protocol, highlighting at least one key advantage and at least one key disadvantage of each.",
+    "answer": "The tree-locking protocol has a major advantage over two-phase locking in that it is deadlock-free, meaning transaction rollbacks due to deadlock are not required. However, its disadvantage is that a transaction may be forced to lock data items it does not actually access, simply to follow the tree structure to a desired node. This can increase locking overhead and reduce concurrency. Conversely, while the two-phase locking protocol does not require locking unaccessed data, its primary disadvantage is that it does not ensure freedom from deadlock, which can occur if transactions wait for each other's locks in a cycle.",
+    "must_rubric": [
+      "Must state that the tree-locking protocol's advantage is being deadlock-free.",
+      "Must state that the tree-locking protocol's disadvantage is potentially locking unaccessed data items.",
+      "Must state that the two-phase locking protocol's disadvantage is its susceptibility to deadlock.",
+      "Must state that two-phase locking protocol's advantage over tree-locking is that it does not lock unaccessed data items."
+    ],
+    "optional_rubric": [],
+    "gold_chunks": [
+      "Two-phase locking does not ensure freedom from deadlock.",
+      "The tree-locking protocol has an advantage over the two-phase locking protocol in that, unlike twophase locking, it is deadlock-free, so no rollbacks are required.",
+      "However, the protocol has the disadvantage that, in some cases, a transaction may have to lock data items that it does not access.",
+      "This additional locking results in increased locking overhead, the possibility of additional waiting time, and a potential decrease in concurrency."
+    ],
+    "optional_chunks": [],
+    "chunk_relationships": {
+      "composites": [
+        [
+          "The tree-locking protocol has an advantage over the two-phase locking protocol in that, unlike twophase locking, it is deadlock-free, so no rollbacks are required.",
+          "However, the protocol has the disadvantage that, in some cases, a transaction may have to lock data items that it does not access.",
+          "This additional locking results in increased locking overhead, the possibility of additional waiting time, and a potential decrease in concurrency."
+        ]
+      ],
+      "substitutes": []
+    },
+    "source_id": "c18_w1285_1309_q004"
+  },
+  {
+    "id": "18.6",
+    "chapter": 18,
+    "difficulty": "medium",
+    "question": "What is a lock conversion, and how can it improve concurrency under the two-phase locking protocol?",
+    "answer": "A lock conversion is a mechanism to change the mode of a lock a transaction already holds, such as upgrading a shared lock to an exclusive lock or downgrading an exclusive lock to a shared one. This can improve concurrency by allowing a transaction to hold a less restrictive lock for as long as possible. For example, a transaction that reads several data items and then writes to just one of them can initially acquire a shared lock on that item. This allows other transactions to read it concurrently. Only when the transaction is ready to perform the write does it upgrade its lock to exclusive mode. This allows for more simultaneous access compared to taking an exclusive lock from the beginning, which would have blocked all other transactions.",
+    "must_rubric": [
+      "Must define lock conversion as upgrading or downgrading a lock's mode.",
+      "Must explain that it improves concurrency by holding less restrictive locks for longer."
+    ],
+    "optional_rubric": [
+      "May provide an example, such as initially holding a shared lock for reading and later upgrading to an exclusive lock for writing."
+    ],
+    "gold_chunks": [
+      "This observation leads us to a refinement of the basic twophase locking protocol, in which lock conversions are allowed.",
+      "We shall provide a mechanism for upgrading a shared lock to an exclusive lock, and downgrading an exclusive lock to a shared lock.",
+      "Notice, however, that T 8  needs an exclusive lock on a 1  only at the end of its execution, when it writes a 1 .",
+      "Thus, if T 8  could initially lock a 1  in shared mode, and then could later change the lock to exclusive mode, we could get more concurrency, since T 8  and T 9  could access a 1 and a 2  simultaneously."
+    ],
+    "optional_chunks": [],
+    "example_analogy_chunks": [
+      "Notice, however, that T 8  needs an exclusive lock on a 1  only at the end of its execution, when it writes a 1 .",
+      "Thus, if T 8  could initially lock a 1  in shared mode, and then could later change the lock to exclusive mode, we could get more concurrency, since T 8  and T 9  could access a 1 and a 2  simultaneously."
+    ],
+    "chunk_relationships": {
+      "composites": [
+        [
+          "This observation leads us to a refinement of the basic twophase locking protocol, in which lock conversions are allowed.",
+          "We shall provide a mechanism for upgrading a shared lock to an exclusive lock, and downgrading an exclusive lock to a shared lock."
+        ],
+        [
+          "Notice, however, that T 8  needs an exclusive lock on a 1  only at the end of its execution, when it writes a 1 .",
+          "Thus, if T 8  could initially lock a 1  in shared mode, and then could later change the lock to exclusive mode, we could get more concurrency, since T 8  and T 9  could access a 1 and a 2  simultaneously."
+        ]
+      ],
+      "substitutes": []
+    },
+    "source_id": "c18_w1285_1309_q005"
+  },
+  {
+    "id": "18.7",
+    "chapter": 18,
+    "difficulty": "hard",
+    "question": "A database system uses the wait-die deadlock prevention scheme, where each transaction is assigned a unique timestamp upon starting. T1 has timestamp of 1, T2 has a timestamp of 2, and T3 has a timestamp of 3. What happens when T2 requests a lock on an item held by T1? What happens in case T2 requests a lock on an item held by T3? Based on the rules of the wait-die scheme, what happens in each case, and use these cases to explain how this scheme prevents deadlock cycles from forming?",
+    "answer": "When T2 requests a lock on an item held by T1, T2 is rolled back and dies because its timestamp of 2 is greater than T1's timestamp of 1, identifying T2 as the younger transaction. In the second case, when T2 requests a lock on an item held by T3, T2 is permitted to wait because its timestamp of 2 is smaller than T3's timestamp of 3, making T2 the older transaction. This scheme prevents deadlocks by ensuring that waiting only happens in one direction based on age. Because a transaction can only wait for another transaction that is younger than itself, any wait-dependency must move from a lower timestamp to a higher timestamp. For a deadlock cycle to form, there would need to be a circular path where a transaction eventually waits for someone older than itself, which the wait-die rules strictly prohibit. Since a transaction cannot be both older and younger than another, this monotonic ordering of timestamps ensures that cycles can never close.",
+    "must_rubric": [
+      "Must state that T2 dies when requesting from T1 because T2 has a larger timestamp.",
+      "Must state that T2 waits when requesting from T3 because T2 has a smaller timestamp.",
+      "Must explain that the wait-die scheme only allows older transactions to wait for younger ones.",
+      "Must conclude that cycles are impossible because timestamps provide a strict, non-circular ordering for waiting. This can be explained in other terms as well and that would be correct too."
+    ],
+    "optional_rubric": [],
+    "gold_chunks": [
+      "The wait-die scheme is a nonpreemptive technique.",
+      "When transaction T i requests a data item currently held by T j , T i is allowed to wait only if it has a timestamp smaller than that of T j (i.e., T i is older than T j ).",
+      "Otherwise, T i is rolled back (dies).",
+      "For example, suppose that transactions T 14 , T 15 , and T 16  have timestamps 5, 10, and 15, respectively.",
+      "If T 14 requests a data item held by T 15 , then T 14  will wait.",
+      "If T 16  requests a data item held by T 15 , then T 16  will be rolled back."
+    ],
+    "optional_chunks": [
+      "To control the preemption, we assign a unique timestamp, based on a counter or on the system clock, to each transaction when it begins."
+    ],
+    "example_analogy_chunks": [
+      "For example, suppose that transactions T 14 , T 15 , and T 16  have timestamps 5, 10, and 15, respectively.",
+      "If T 14 requests a data item held by T 15 , then T 14  will wait.",
+      "If T 16  requests a data item held by T 15 , then T 16  will be rolled back."
+    ],
+    "chunk_relationships": {
+      "composites": [
+        [
+          "The wait-die scheme is a nonpreemptive technique.",
+          "When transaction T i requests a data item currently held by T j , T i is allowed to wait only if it has a timestamp smaller than that of T j (i.e., T i is older than T j ).",
+          "Otherwise, T i is rolled back (dies)."
+        ],
+        [
+          "For example, suppose that transactions T 14 , T 15 , and T 16  have timestamps 5, 10, and 15, respectively.",
+          "If T 14 requests a data item held by T 15 , then T 14  will wait.",
+          "If T 16  requests a data item held by T 15 , then T 16  will be rolled back."
+        ]
+      ],
+      "substitutes": []
+    },
+    "source_id": "c18_w1285_1309_q006"
+  },
+  {
+    "id": "19.1",
+    "chapter": 19,
+    "difficulty": "easy",
+    "question": "What is the fail-stop assumption in the context of database system crashes?",
+    "answer": "The fail-stop assumption is the belief that when hardware errors or software bugs occur, they will cause the system to halt completely but will not corrupt the contents of non-volatile storage.",
+    "must_rubric": [
+      "Must state the fail-stop (or 'fail stop') assumption is it is believed that hardware or software errors cause system halts but do not corrupt data stored in non-volatile storage."
+    ],
+    "optional_rubric": [],
+    "gold_chunks": [
+      "The assumption that hardware errors and bugs in the software bring the system to a halt, but do not corrupt the non-volatile storage contents, is known as the failstop assumption ."
+    ],
+    "optional_chunks": [
+      "System crash . There is a hardware malfunction, or a bug in the database software or the operating system, that causes the loss of the content of volatile storage and brings transaction processing to a halt.",
+      "The content of non-volatile storage remains intact and is not corrupted."
+    ],
+    "chunk_relationships": {
+      "composites": [
+        [
+          "System crash . There is a hardware malfunction, or a bug in the database software or the operating system, that causes the loss of the content of volatile storage and brings transaction processing to a halt.",
+          "The content of non-volatile storage remains intact and is not corrupted."
+        ]
+      ],
+      "substitutes": []
+    },
+    "source_id": "c19_w1401_1425_q000"
+  },
+  {
+    "id": "19.2",
+    "chapter": 19,
+    "difficulty": "easy",
+    "question": "What are the four fields contained in an update log record?",
+    "answer": "An update log record contains four fields: a transaction identifier, a data-item identifier, the old value of the data item before the write, and the new value of the data item after the write.",
+    "must_rubric": [
+      "Must list all four fields: transaction identifier, data-item identifier, old value, and new value.",
+      "Must identify the Transaction identifier as the unique ID for the transaction that performed the write.",
+      "Must identify the Data-item identifier as the unique ID of the specific data item that was written.",
+      "Must mention the Old value and define it as the value of the data item before the write occurred.",
+      "Must mention the New value and define it as the value the data item will have after the write is completed."
+    ],
+    "optional_rubric": [],
+    "gold_chunks": [
+      "Transaction identifier , which is the unique identifier of the transaction that performed the write operation.",
+      "Data-item identifier , which is the unique identifier of the data item written.",
+      "Old value , which is the value of the data item prior to the write.",
+      "New value , which is the value that the data item will have after the write."
+    ],
+    "optional_chunks": [
+      "An update log record describes a single database write.",
+      "It has these fields:"
+    ],
+    "chunk_relationships": {
+      "composites": [
+        [
+          "An update log record describes a single database write.",
+          "It has these fields:",
+          "Transaction identifier , which is the unique identifier of the transaction that performed the write operation.",
+          "Data-item identifier , which is the unique identifier of the data item written.",
+          "Old value , which is the value of the data item prior to the write.",
+          "New value , which is the value that the data item will have after the write."
+        ]
+      ],
+      "substitutes": []
+    },
+    "source_id": "c19_w1401_1425_q001"
+  },
+  {
+    "id": "19.3",
+    "chapter": 19,
+    "difficulty": "easy",
+    "question": "What are the `redo` and `undo` operations in a log-based recovery system?",
+    "answer": "In log-based recovery, the `redo` operation uses a log record to set a data item to its new value, while the `undo` operation uses a log record to set a data item back to its old value.",
+    "must_rubric": [
+      "Must define the `redo` operation as setting a data item to its new value from the log record.",
+      "Must define the `undo` operation as setting a data item to its old value from the log record."
+    ],
+    "optional_rubric": [],
+    "gold_chunks": [
+      "The undo operation using a log record sets the data item specified in the log record to the old value contained in the log record.",
+      "The redo operation using a log record sets the data item specified in the log record to the new value contained in the log record."
+    ],
+    "optional_chunks": [],
+    "source_id": "c19_w1401_1425_q002"
+  },
+  {
+    "id": "19.4",
+    "chapter": 19,
+    "difficulty": "medium",
+    "question": "After a system crash, how does a recovery system use the log to determine which transactions to `undo` and which to `redo`?",
+    "answer": "After a system crash, the recovery system consults the log to ensure atomicity. A transaction needs to be undone if the log contains its `<Ti start>` record but lacks either a `<Ti commit>` or `<Ti abort>` record. Conversely, a transaction needs to be redone if the log contains its `<Ti start>` record and also contains either a `<Ti commit>` or `<Ti abort>` record.",
+    "must_rubric": [
+      "Must correctly state the condition for undoing a transaction (start record exists, but no commit or abort record).",
+      "Must correctly state the condition for redoing a transaction (start record exists, along with either a commit or abort record)."
+    ],
+    "optional_rubric": [
+      "Must state that the system consults the log after a crash."
+    ],
+    "gold_chunks": [
+      "After a system crash has occurred, the system consults the log to determine which transactions need to be redone and which need to be undone so as to ensure atomicity.",
+      "Transaction T i needs to be undone if the log contains the record < T i start > but does not contain either the record < T i commit > or the record < T i abort > .",
+      "Transaction T i needs to be redone if the log contains the record < T i start > and either the record < T i commit > or the record < T i abort > ."
+    ],
+    "optional_chunks": [],
+    "example_analogy_chunks": [
+      "Transaction T i needs to be undone if the log contains the record < T i start > but does not contain either the record < T i commit > or the record < T i abort > .",
+      "Transaction T i needs to be redone if the log contains the record < T i start > and either the record < T i commit > or the record < T i abort > ."
+    ],
+    "chunk_relationships": {
+      "composites": [
+        [
+          "Transaction T i needs to be undone if the log contains the record < T i start > but does not contain either the record < T i commit > or the record < T i abort > .",
+          "Transaction T i needs to be redone if the log contains the record < T i start > and either the record < T i commit > or the record < T i abort > ."
+        ]
+      ],
+      "substitutes": []
+    },
+    "source_id": "c19_w1401_1425_q003"
+  },
+  {
+    "id": "19.5",
+    "chapter": 19,
+    "difficulty": "medium",
+    "question": "Explain the three steps of a simple checkpoint procedure and describe how using checkpoints streamlines the recovery process.",
+    "answer": "A simple checkpoint procedure involves three steps: 1) writing all log records from main memory to stable storage, 2) writing all modified buffer blocks to disk, and 3) writing a `<checkpoint L>` log record to stable storage, where L is the list of active transactions. Checkpoints streamline recovery because any transaction that completed before the checkpoint is guaranteed to have its modifications written to the database. Therefore, during recovery, the system only needs to find the last checkpoint record and apply redo or undo operations to the transactions that were active at the time of the checkpoint (in list L) and any transactions that started after it. This avoids a full scan of the log and prevents the redoing of already-persisted updates.",
+    "must_rubric": [
+      "Must list the three steps of the checkpoint procedure: outputting log records, outputting modified buffer blocks, and outputting the checkpoint record.",
+      "Must explain that checkpoints allow the recovery system to avoid redoing transactions that committed before the checkpoint.",
+      "Must state that recovery only needs to consider transactions from the last checkpoint forward, reducing the amount of log that needs to be processed."
+    ],
+    "optional_rubric": [],
+    "gold_chunks": [
+      "1. Output onto stable storage all log records currently residing in main memory.",
+      "2. Output to the disk all modified buffer blocks.",
+      "3. Output onto stable storage a log record of the form < checkpoint L>, where L is a list of transactions active at the time of the checkpoint.",
+      "The presence of a < checkpoint L> record in the log allows the system to stream-line its recovery procedure.",
+      "Consider a transaction T i that completed prior to the checkpoint.",
+      "Any database modifications made by T i must have been written to the database either prior to the checkpoint or as part of the checkpoint itself.",
+      "Thus, at recovery time, there is no need to perform a redo operation on T i .",
+      "After a system crash has occurred, the system examines the log to find the last < checkpoint L> record (this can be done by searching the log backward, from the end of the log, until the first < checkpoint L> record is found).",
+      "The redo or undo operations need to be applied only to transactions in L , and to all transactions that started execution after the < checkpoint L> record was written to the log."
+    ],
+    "optional_chunks": [
+      "A checkpoint is performed as follows:"
+    ],
+    "chunk_relationships": {
+      "composites": [
+        [
+          "A checkpoint is performed as follows:",
+          "1. Output onto stable storage all log records currently residing in main memory.",
+          "2. Output to the disk all modified buffer blocks.",
+          "3. Output onto stable storage a log record of the form < checkpoint L>, where L is a list of transactions active at the time of the checkpoint."
+        ],
+        [
+          "Consider a transaction T i that completed prior to the checkpoint.",
+          "Any database modifications made by T i must have been written to the database either prior to the checkpoint or as part of the checkpoint itself.",
+          "Thus, at recovery time, there is no need to perform a redo operation on T i ."
+        ]
+      ],
+      "substitutes": []
+    },
+    "source_id": "c19_w1401_1425_q004"
+  },
+  {
+    "id": "19.6",
+    "chapter": 19,
+    "difficulty": "hard",
+    "question": "A database system operates under a steal/no-force buffer management policy. Transaction T1 updates data item $A$ (contained in block $B_A$) from a value of 100 to 200, and subsequently updates data item $B$ (contained in block $B_B$) from 500 to 600. (1) Suppose the buffer manager needs to evict a block to make room for new data while T1 is still active. If it selects block $B_A$ for eviction, what specific action must the system perform regarding the log to satisfy the Write-Ahead Logging (WAL) rule? (2) If the system crashes immediately after $B_A$ is output to disk but before T1 performs its second update or reaches a commit state, the value of $A$ on the physical disk is 200. Explain why this state violates the atomicity requirement and describe exactly how the recovery manager uses the log records to resolve this specific inconsistency.",
+    "answer": "1. The WAL Requirement for EvictionUnder the steal policy, the system is allowed to \"steal\" a buffer block from an active transaction and write it to disk. However, to satisfy the Write-Ahead Logging (WAL) rule, the database must ensure that all log records pertaining to the data in block $B_A$—specifically the update log record $\\langle T_1, A, 100, 200 \\rangle$—are forced to stable storage before block $B_A$ itself is output to the physical disk. This ensures that if a crash occurs, the system has a permanent record of the \"Old Value\" to undo the change if $T_1$ fails to commit.\n\n2. Atomicity Violation and RecoveryThe physical disk state (where $A = 200$) violates atomicity because T1 is an incomplete transaction. Atomicity dictates that either all operations of a transaction are reflected in the database or none are. Since T1 had not committed, the \"nothing\" part of the rule must apply, but the disk already reflects a \"partial\" modification.During recovery, the system scans the log and identifies T1 as an incomplete transaction because the log contains a $\\langle T_1 \\text{ start} \\rangle$ record but lacks a $\\langle T_1 \\text{ commit} \\rangle$ or $\\langle T_1 \\text{ abort} \\rangle$ record. The recovery manager performs an undo(T1) operation. It accesses the update log record for $A$ and uses the Old Value field (100) to overwrite the value 200 currently on the disk. This restores the database to its pre-transaction state, successfully maintaining atomicity.",
+    "must_rubric": [
+      "Must explicitly state that the log record containing the update to $A$ must be written to stable storage before the buffer block $B_A$ is written to the disk (the Write-Ahead Logging rule).",
+      "Must identify that the \"steal\" policy is what allows an uncommitted value (200) to reach the physical disk in the first place.",
+      "Must explain that the state is inconsistent because an uncommitted transaction's effects are present on the disk, failing the \"all-or-nothing\" atomicity requirement.",
+      "Must correctly identify the use of the Old Value field in the log record to perform an undo operation restoring $A$ to 100.",
+      "Must mention that the absence of a commit or abort record for T1 in the log is what triggers the system to treat T1 as a failure during recovery."
+    ],
+    "optional_rubric": [],
+    "gold_chunks": [
+      "Transaction T i enters the commit state after the T i commit log record has been output to stable storage.",
+      "Before the T i commit log record can be output to stable storage, all log records pertaining to transaction T i must have been output to stable storage.",
+      "Before a block of data in main memory can be output to the database (in nonvolatile storage), all log records pertaining to data in that block must have been output to stable storage.",
+      "The alternative, the steal policy, allows the system to write modified blocks to disk even if the transactions that made those modifications have not all committed.",
+      "Old value , which is the value of the data item prior to the write.",
+      "New value , which is the value that the data item will have after the write.",
+      "The undo operation using a log record sets the data item specified in the log record to the old value contained in the log record.",
+      "Transaction T i needs to be undone if the log contains the record T i start but does not contain either the record T i commit or the record T i abort ."
+    ],
+    "optional_chunks": [
+      "transaction atomicity:",
+      "An update log record describes a single database write.",
+      "It has these fields:"
+    ],
+    "chunk_relationships": {
+      "composites": [
+        [
+          "transaction atomicity:",
+          "Transaction T i enters the commit state after the T i commit log record has been output to stable storage.",
+          "Before the T i commit log record can be output to stable storage, all log records pertaining to transaction T i must have been output to stable storage.",
+          "Before a block of data in main memory can be output to the database (in nonvolatile storage), all log records pertaining to data in that block must have been output to stable storage."
+        ],
+        [
+          "An update log record describes a single database write.",
+          "It has these fields:",
+          "Old value , which is the value of the data item prior to the write.",
+          "New value , which is the value that the data item will have after the write."
+        ]
+      ],
+      "substitutes": []
+    },
+    "source_id": "c19_w1401_1425_q005"
+  }
+]
