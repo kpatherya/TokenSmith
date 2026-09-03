@@ -1,0 +1,42 @@
+{
+  "questionA": "How does third normal form reduce update anomalies?",
+  "answerA": "Third normal form removes transitive dependencies, which reduces duplicated facts and update anomalies in relational tables.",
+  "questionB": "What about the French Senate?",
+  "priorSources": [
+    {
+      "materialId": "database-notes",
+      "documentId": 1,
+      "chunkRowid": 41,
+      "path": "/placeholder/database.pdf",
+      "pageStart": 14,
+      "pageEnd": 14,
+      "sectionHeader": "Normalization",
+      "documentTitle": "Database Notes",
+      "excerpt": "Third normal form removes transitive dependencies and reduces update anomalies."
+    },
+    {
+      "materialId": "database-notes",
+      "documentId": 1,
+      "chunkRowid": 42,
+      "path": "/placeholder/database.pdf",
+      "pageStart": 15,
+      "pageEnd": 15,
+      "sectionHeader": "Functional Dependencies",
+      "documentTitle": "Database Notes",
+      "excerpt": "A transitive dependency occurs when a non-key attribute depends on another non-key attribute."
+    }
+  ],
+  "retrievedSources": [
+    {
+      "materialId": "civics-notes",
+      "documentId": 2,
+      "chunkRowid": 77,
+      "path": "/placeholder/civics.pdf",
+      "pageStart": 3,
+      "pageEnd": 3,
+      "sectionHeader": "French Parliament",
+      "documentTitle": "Civics Notes",
+      "excerpt": "The Senate is the upper house of the French Parliament."
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "queries": [
+    {
+      "query": "How do transitive dependencies lead to update anomalies?",
+      "prerequisiteTerms": ["transitive dependenc"],
+      "consequenceTerms": ["update anomal"]
+    },
+    {
+      "query": "How does a buffer manager interact with durable recovery logging?",
+      "prerequisiteTerms": ["buffer manager", "cache"],
+      "consequenceTerms": ["durable log", "recovery"]
+    }
+  ]
+}
