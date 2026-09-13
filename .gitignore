@@ -20,3 +20,5 @@ app_runtime/python/
 docs/
 open_ragbench/
 bundled_models/**/*.gguf
+learning_harness/
+local_pdfs/
