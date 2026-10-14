@@ -1,4 +1,5 @@
 import type {
+  AnswerReasoning,
   ApplicationSettings,
   ChatMessage,
   ChatSelectedPassage,
@@ -9,6 +10,7 @@ import type {
   TokenSmithSettings
 } from './app-state'
 import type { CleaningProfileId, CleaningRuleId } from './cleaning'
+import type { LatencySpan, LatencyTrace } from './latency-trace'
 
 export type ConversationContextMode = 'standalone' | 'contextual'
 
@@ -27,8 +29,8 @@ export interface EngineQuestionRewriteRequest {
 }
 
 export type QuestionRewrite =
-  | { mode: ConversationContextMode; query: string; clarification: '' }
-  | { mode: 'clarify'; query: ''; clarification: string }
+  | { mode: ConversationContextMode; query: string; clarification: ''; reasoning: boolean }
+  | { mode: 'clarify'; query: ''; clarification: string; reasoning: false }
 
 export interface EngineInfo {
   id: 'tokensmith'
@@ -38,12 +40,14 @@ export interface EngineInfo {
 }
 
 export interface EngineChatRequest {
+  practiceTask?: import('./quiz').PracticeTask
   requestId?: string
   prompt: string
   selectedPassage?: ChatSelectedPassage
   answerPrompt?: string
   retrievalQuery?: string
   conversationContextMode?: ConversationContextMode
+  reasoning?: boolean
   referenceExchange?: ChatReferenceExchange
   answerToSimplify?: string
   messages: ChatMessage[]
@@ -66,11 +70,20 @@ export interface EngineChatResponse {
   modelName: string
   text: string
   sources: ChatSource[]
+  reasoning?: AnswerReasoning
+  latencyTrace?: LatencyTrace
   followUpSuggestions?: string[]
   followUpError?: string
 }
 
+export interface LibrarySearchResult {
+  sources: ChatSource[]
+  reason?: string
+  retrievalChildren?: LatencySpan[]
+}
+
 export interface EngineQuestionSuggestionRequest {
+  documents?: import('./study-scope').StudyDocumentRef[]
   messages: ChatMessage[]
   materials: CourseMaterial[]
   model: LocalModel

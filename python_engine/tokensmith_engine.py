@@ -11,6 +11,7 @@ import json
 import hashlib
 import math
 import os
+import random
 import re
 import sys
 import time
@@ -40,6 +41,9 @@ try:
         keyword_search,
         keyword_terms_for_query,
         list_materials,
+        study_documents,
+        validate_study_documents,
+        practice_source_rows,
         set_material_active,
         source_document_for_source,
         starter_source_rows,
@@ -63,6 +67,9 @@ except ImportError:  # pragma: no cover - allows direct package imports in tests
         keyword_search,
         keyword_terms_for_query,
         list_materials,
+        study_documents,
+        validate_study_documents,
+        practice_source_rows,
         set_material_active,
         source_document_for_source,
         starter_source_rows,
@@ -1548,6 +1555,29 @@ def normalize_search_mode(value: Any) -> str:
     return mode if mode in SEARCH_MODES else DEFAULT_SEARCH_MODE
 
 
+def retrieval_latency_span(
+    stage: str,
+    started_at: float,
+    started: float,
+    *,
+    in_count: Optional[int] = None,
+    out_count: Optional[int] = None,
+    details: Optional[Dict[str, Any]] = None,
+) -> Dict[str, Any]:
+    span: Dict[str, Any] = {
+        "stage": stage,
+        "startedAt": started_at,
+        "durationMs": max(0.0, (time.perf_counter() - started) * 1000.0),
+    }
+    if in_count is not None:
+        span["inCount"] = max(0, int(in_count))
+    if out_count is not None:
+        span["outCount"] = max(0, int(out_count))
+    if details:
+        span["details"] = details
+    return span
+
+
 def reciprocal_rank_fusion(
     rankings: Sequence[Tuple[float, Sequence[int]]],
     limit: int,
@@ -1682,8 +1712,11 @@ def search_library(payload: Dict[str, Any]) -> Dict[str, Any]:
     query = payload.get("query", "")
     limit = int(payload.get("limit") or 4)
     search_mode = normalize_search_mode(payload.get("searchMode"))
+    latency_spans: List[Dict[str, Any]] = []
     candidate_limit = max(limit * 8, limit) if search_mode in ("keyword", "hybrid") else limit
     materials = payload.get("materials") or []
+    documents = validate_study_documents(user_data_path, payload["documents"]) if "documents" in payload else None
+    scope_args = {} if documents is None else {"documents": documents}
     embedding_specs = embedding_model_specs(payload)
     requested_active_materials = [
         material
@@ -1691,8 +1724,9 @@ def search_library(payload: Dict[str, Any]) -> Dict[str, Any]:
         if material.get("id") and (material.get("status") == "ready" or material.get("indexedAt")) and material.get("isActive") is not False
     ]
     requested_active_ids = [material["id"] for material in requested_active_materials]
-    active_ids = enabled_material_ids_for_requests(user_data_path, requested_active_materials)
-    if len(active_ids) != len(requested_active_ids):
+    active_ids = (list(dict.fromkeys(d["materialId"] for d in documents)) if documents is not None
+                  else enabled_material_ids_for_requests(user_data_path, requested_active_materials))
+    if documents is None and len(active_ids) != len(requested_active_ids):
         log_event(
             "search_ignored_inactive_or_unknown_materials",
             requested=len(requested_active_ids),
@@ -1701,10 +1735,14 @@ def search_library(payload: Dict[str, Any]) -> Dict[str, Any]:
 
     query_tokens = sorted(set(tokenize(query)))
     if not active_ids:
-        return {"sources": [], "reason": no_enabled_materials_reason(user_data_path)}
+        return {
+            "sources": [],
+            "reason": "no_selected_documents" if documents is not None else no_enabled_materials_reason(user_data_path),
+            "latencySpans": latency_spans,
+        }
 
     if not has_chunks(user_data_path, active_ids):
-        return {"sources": [], "reason": "no_indexed_chunks"}
+        return {"sources": [], "reason": "no_indexed_chunks", "latencySpans": latency_spans}
 
     collection_embedding_models = embedding_models_by_collection_ids(user_data_path, active_ids)
     active_ids_by_embedding_model: Dict[str, List[str]] = {}
@@ -1716,10 +1754,17 @@ def search_library(payload: Dict[str, Any]) -> Dict[str, Any]:
 
     vector_hits_by_rowid: Dict[int, Tuple[float, str]] = {}
     skipped_embedding_models: List[str] = []
+    query_embedding_started_at: Optional[float] = None
+    query_embedding_duration_ms = 0.0
+    vector_search_started_at: Optional[float] = None
+    vector_search_duration_ms = 0.0
 
     for embedding_key, grouped_active_ids in (
         active_ids_by_embedding_model.items() if search_mode in ("vector", "hybrid") else []
     ):
+        if query_embedding_started_at is None:
+            query_embedding_started_at = time.time() * 1000.0
+        embedding_started = time.perf_counter()
         log_event("search_embedding_provider_resolve_start", embeddingKey=embedding_key)
         embed_text, embedding_reason = resolve_embedding_provider_for_key(embedding_key, embedding_specs, payload.get("embeddingGpuEnabled") is not False)
         log_event(
@@ -1728,6 +1773,7 @@ def search_library(payload: Dict[str, Any]) -> Dict[str, Any]:
             reason=embedding_reason,
         )
         if embedding_reason or embed_text is None:
+            query_embedding_duration_ms += (time.perf_counter() - embedding_started) * 1000.0
             skipped_embedding_models.append(embedding_key)
             continue
 
@@ -1738,23 +1784,64 @@ def search_library(payload: Dict[str, Any]) -> Dict[str, Any]:
         except Exception as error:
             log_event("query_embedding_failed", embeddingKey=embedding_key, error=str(error))
             skipped_embedding_models.append(embedding_key)
+            query_embedding_duration_ms += (time.perf_counter() - embedding_started) * 1000.0
             continue
+        query_embedding_duration_ms += (time.perf_counter() - embedding_started) * 1000.0
 
+        if vector_search_started_at is None:
+            vector_search_started_at = time.time() * 1000.0
+        vector_started = time.perf_counter()
         for rowid, score in vector_search(
-            user_data_path, query_embedding, grouped_active_ids, candidate_limit, embedding_key
+            user_data_path, query_embedding, grouped_active_ids, candidate_limit, embedding_key, **scope_args
         ):
             current = vector_hits_by_rowid.get(rowid)
             if current is None or score > current[0]:
                 vector_hits_by_rowid[rowid] = (score, embedding_key)
+        vector_search_duration_ms += (time.perf_counter() - vector_started) * 1000.0
+
+    if search_mode in ("vector", "hybrid"):
+        latency_spans.append(
+            {
+                "stage": "Query encoding",
+                "startedAt": query_embedding_started_at or time.time() * 1000.0,
+                "durationMs": query_embedding_duration_ms,
+                "outCount": len(active_ids_by_embedding_model) - len(skipped_embedding_models),
+                "details": {
+                    "models": len(active_ids_by_embedding_model),
+                    "skipped_models": len(skipped_embedding_models),
+                },
+            }
+        )
+        latency_spans.append(
+            {
+                "stage": "Semantic search",
+                "startedAt": vector_search_started_at or time.time() * 1000.0,
+                "durationMs": vector_search_duration_ms,
+                "outCount": len(vector_hits_by_rowid),
+            }
+        )
 
     keyword_terms: List[str] = []
     keyword_hits: List[Tuple[int, float]] = []
     if search_mode in ("keyword", "hybrid"):
-        keyword_terms = keyword_terms_for_query(user_data_path, query, active_ids)
-        keyword_hits = keyword_search(user_data_path, query, active_ids, candidate_limit, keyword_terms)
+        keyword_started_at = time.time() * 1000.0
+        keyword_started = time.perf_counter()
+        keyword_terms = keyword_terms_for_query(user_data_path, query, active_ids, **scope_args)
+        keyword_hits = keyword_search(user_data_path, query, active_ids, candidate_limit, keyword_terms, **scope_args)
+        latency_spans.append(
+            retrieval_latency_span(
+                "Keyword search",
+                keyword_started_at,
+                keyword_started,
+                out_count=len(keyword_hits),
+                details={"terms": len(keyword_terms)},
+            )
+        )
 
     vector_hits = [(rowid, score) for rowid, (score, _key) in vector_hits_by_rowid.items()]
     ranked_limit = candidate_limit if search_mode in ("keyword", "hybrid") else limit
+    fusion_started_at = time.time() * 1000.0
+    fusion_started = time.perf_counter()
     ranked = combine_search_hits(search_mode, vector_hits, keyword_hits, ranked_limit)
 
     log_event(
@@ -1772,10 +1859,10 @@ def search_library(payload: Dict[str, Any]) -> Dict[str, Any]:
     row_embedding_models = {
         rowid: embedding_key for rowid, (_score, embedding_key) in vector_hits_by_rowid.items()
     }
-    rows = fetch_sources(user_data_path, ranked, active_ids)
+    rows = fetch_sources(user_data_path, ranked, active_ids, **scope_args)
     for row in rows:
         row["query_embedding_model"] = row_embedding_models.get(int(row["rowid"]))
-    rows = expand_source_units(user_data_path, rows, active_ids)
+    rows = expand_source_units(user_data_path, rows, active_ids, **scope_args)
     rows = select_source_rows(rows, query_tokens, keyword_terms, limit)
     for row in rows:
         row["retrieval_mode"] = search_mode
@@ -1788,6 +1875,16 @@ def search_library(payload: Dict[str, Any]) -> Dict[str, Any]:
     for source in sources:
         source["queryTerms"] = source_query_tokens
         source["keywordTerms"] = list(keyword_terms)
+    latency_spans.append(
+        retrieval_latency_span(
+            "Passage ranking",
+            fusion_started_at,
+            fusion_started,
+            in_count=len(vector_hits) + len(keyword_hits),
+            out_count=len(sources),
+            details={"candidates": len(ranked)},
+        )
+    )
     log_event(
         "search_sources_selected",
         queryChars=len(query),
@@ -1801,21 +1898,68 @@ def search_library(payload: Dict[str, Any]) -> Dict[str, Any]:
         "reason": None if sources else "no_matching_sources",
         "queryTerms": source_query_tokens,
         "keywordTerms": keyword_terms,
+        "latencySpans": latency_spans,
     }
+
+
+def list_study_documents(payload: Dict[str, Any]) -> Dict[str, Any]:
+    return {"documents": study_documents(payload["userDataPath"])}
+
+
+def practice_sources(payload: Dict[str, Any]) -> Dict[str, Any]:
+    documents = payload.get("documents") or []
+    rows = practice_source_rows(payload["userDataPath"], documents)
+    used = set(payload.get("usedSourceKeys") or [])
+
+    def source_key(row):
+        return f'{row["material_id"]}:{row["document_id"]}:{row.get("parent_id") or row.get("stable_chunk_id") or row["rowid"]}'
+
+    candidates = [row for row in rows if source_key(row) not in used and not source_row_is_exercise(row)]
+    if not candidates:
+        return {"sources": [], "reason": "no_unused_passages"}
+    # Rotate documents without changing which collections are enabled for chat.
+    start = int(payload.get("questionIndex") or 0) % len(documents)
+    ordered = documents[start:] + documents[:start]
+    for document in ordered:
+        pool = [row for row in candidates if str(row["material_id"]) == str(document["materialId"])
+                and row["document_id"] == int(document["documentId"])]
+        if pool:
+            anchor = random.choice(pool)
+            break
+    section = anchor.get("section_header")
+    selected = [anchor]
+    if section:
+        selected += [row for row in pool if row["rowid"] != anchor["rowid"]
+                     and row.get("section_header") == section][:3]
+    rows = expand_source_units(payload["userDataPath"], selected, [str(item["materialId"]) for item in documents],
+                               documents=documents)
+    allowed = {(str(item["materialId"]), int(item["documentId"])) for item in documents}
+    sources = []
+    for row in rows:
+        if (str(row["material_id"]), row["document_id"]) not in allowed:
+            raise ValueError("A practice passage was outside the selected documents.")
+        row["retrieval_mode"] = "starter"
+        source = source_from_sqlite_chunk(row, [], strip_exercises=True)
+        if source.get("context") or source.get("excerpt"):
+            sources.append(source)
+    return {"sources": sources, "reason": None if sources else "no_unused_passages"}
 
 
 def starter_sources(payload: Dict[str, Any]) -> Dict[str, Any]:
     user_data_path = payload["userDataPath"]
     limit = int(payload.get("limit") or 4)
     materials = payload.get("materials") or []
+    documents = validate_study_documents(user_data_path, payload["documents"]) if "documents" in payload else None
+    scope_args = {} if documents is None else {"documents": documents}
     requested_active_materials = [
         material
         for material in materials
         if material.get("id") and (material.get("status") == "ready" or material.get("indexedAt")) and material.get("isActive") is not False
     ]
     requested_active_ids = [material["id"] for material in requested_active_materials]
-    active_ids = enabled_material_ids_for_requests(user_data_path, requested_active_materials)
-    if len(active_ids) != len(requested_active_ids):
+    active_ids = (list(dict.fromkeys(d["materialId"] for d in documents)) if documents is not None
+                  else enabled_material_ids_for_requests(user_data_path, requested_active_materials))
+    if documents is None and len(active_ids) != len(requested_active_ids):
         log_event(
             "starter_sources_ignored_inactive_or_unknown_materials",
             requested=len(requested_active_ids),
@@ -1823,13 +1967,13 @@ def starter_sources(payload: Dict[str, Any]) -> Dict[str, Any]:
         )
 
     if not active_ids:
-        return {"sources": [], "reason": no_enabled_materials_reason(user_data_path)}
+        return {"sources": [], "reason": "no_selected_documents" if documents is not None else no_enabled_materials_reason(user_data_path)}
 
     if not has_chunks(user_data_path, active_ids):
         return {"sources": [], "reason": "no_indexed_chunks"}
 
-    rows = starter_source_rows(user_data_path, active_ids, limit)
-    rows = expand_source_units(user_data_path, rows, active_ids)
+    rows = starter_source_rows(user_data_path, active_ids, limit, **scope_args)
+    rows = expand_source_units(user_data_path, rows, active_ids, **scope_args)
     for row in rows:
         row["retrieval_mode"] = "starter"
         row["query_embedding_model"] = row.get("embedding_model")
@@ -1902,6 +2046,8 @@ COMMANDS = {
     "preparation_report": preparation_report,
     "search": search_library,
     "starter_sources": starter_sources,
+    "study_documents": list_study_documents,
+    "practice_sources": practice_sources,
     "list_materials": list_indexed_materials,
     "set_material_enabled": set_material_enabled,
     "remove_material": remove_material,

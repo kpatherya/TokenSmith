@@ -1,5 +1,8 @@
 import type { PreparationSettings } from './preparation'
 import type { CleaningProfileId, CleaningRuleId } from './cleaning'
+import type { LatencyTrace } from './latency-trace'
+import type { PracticeReference, PracticeState } from './practice'
+import type { StudyDocumentRef } from './study-scope'
 
 export type ScreenId = 'chat' | 'library' | 'models' | 'settings'
 
@@ -82,6 +85,8 @@ export interface LocalModel {
   sizeBytes?: number
   ramRequiredGb?: number
   contextLength?: number
+  inputTokenLimit?: number
+  maxOutputTokens?: number
   parameters?: string
   quant?: string
   type?: string
@@ -95,6 +100,7 @@ export type AppFontSize = 'extra-small' | 'small' | 'normal' | 'large' | 'extra-
 export type SuggestionMode = 'on' | 'off'
 export type SearchMode = 'vector' | 'keyword' | 'hybrid'
 export type ExplanationDepth = 'simple' | 'standard' | 'detailed'
+export type ReasoningMode = 'auto' | 'off' | 'on'
 
 export interface ApplicationSettings {
   theme: AppTheme
@@ -114,8 +120,10 @@ export interface ModelRuntimeSettings {
   suggestedFollowUpPrompt: string
   starterQuestionPrompt?: string
   contextLength: number
+  contextLengthMode?: 'auto' | 'manual'
   maxLength: number
   thinking?: boolean
+  reasoningMode?: ReasoningMode
   temperature: number
   topP: number
   topK: number
@@ -167,12 +175,31 @@ export interface ChatSelectedPassage {
   question?: string
 }
 
+export interface AnswerReasoning {
+  modelId: string
+  supported?: boolean
+  used: boolean
+}
+
+export type AnswerView = 'original' | 'simple' | 'reasoning'
+
+export interface AnswerVariant {
+  text: string
+  sources: ChatSource[]
+  responseDurationMs: number
+  reasoning?: AnswerReasoning
+  followUpSuggestions?: string[]
+  followUpError?: string
+  latencyTrace?: LatencyTrace
+}
+
 export interface ChatMessage {
   id: string
   role: MessageRole
   text: string
   selectedPassage?: ChatSelectedPassage
   sources?: ChatSource[]
+  reasoning?: AnswerReasoning
   conversationContextMode?: 'standalone' | 'contextual' | 'clarify'
   // The depth this answer was written at, so the reader knows what produced it.
   explanationDepth?: ExplanationDepth
@@ -183,35 +210,27 @@ export interface ChatMessage {
     retrievalQuery?: string
     conversationContextMode?: 'standalone' | 'contextual'
     referenceExchange?: { question: string; answer: string }
+    modelSettings?: ModelRuntimeSettings
+    applicationSettings?: ApplicationSettings
   }
-  simplerExplanation?: { text: string; sources: ChatSource[]; responseDurationMs: number }
-  explanationView?: 'original' | 'simple'
+  simplerExplanation?: AnswerVariant
+  reasoningAnswer?: AnswerVariant
+  explanationView?: AnswerView
   responseDurationMs?: number
   followUpSuggestions?: string[]
   followUpError?: string
-  kind?: 'chat' | 'quizQuestion' | 'quizAnswer' | 'quizFeedback'
-  quiz?: {
-    questionNumber?: number
-    totalQuestions?: number
-    complete?: boolean
-  }
-}
-
-export interface QuizState {
-  active: boolean
-  questionNumber: number
-  totalQuestions: number
-  currentQuestion: string
-  currentSources: ChatSource[]
-  usedSourceKeys?: string[]
+  latencyTrace?: LatencyTrace
 }
 
 export interface Conversation {
   id: string
+  modelId: string
   title: string
   period: 'Today' | 'This week'
   messages: ChatMessage[]
-  quizState?: QuizState
+  practiceReference?: PracticeReference
+  practiceSuggestions?: string[]
+  documentScope?: StudyDocumentRef[]
 }
 
 export interface TokenSmithSettings {
@@ -227,9 +246,10 @@ export interface AppStateSnapshot {
   activeScreen: ScreenId
   activeConversationId: string
   conversations: Conversation[]
+  practice?: PracticeState
+  studyScope?: StudyDocumentRef[]
   materials: CourseMaterial[]
   models: LocalModel[]
-  selectedModelId: string
   selectedEmbeddingModelId: string
   settings: TokenSmithSettings
   updatedAt: string

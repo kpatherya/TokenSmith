@@ -53,6 +53,7 @@ const ollamaChatModel = {
   status: 'ready',
   source: 'ollama',
   ollamaModelName: 'llama3',
+  contextLength: 8192,
   addedAt
 }
 
@@ -108,29 +109,31 @@ test('sourceContext prefers full chunk context over the short excerpt', () => {
   assert.doesNotMatch(context, /Short excerpt only/)
 })
 
-test('modelAwareRuntimeSettings uses discovered model context with a bounded automatic cap', () => {
+test('modelAwareRuntimeSettings uses the full discovered limit in Auto mode', () => {
   const runtimeSettings = modelAwareRuntimeSettings({
     model: {
       ...ollamaChatModel,
       contextLength: 16384
     },
     modelSettings: {
+      contextLengthMode: 'auto',
       contextLength: 2048,
       maxLength: 512
     }
   })
 
-  assert.equal(runtimeSettings.contextLength, 8192)
+  assert.equal(runtimeSettings.contextLength, 16384)
   assert.equal(runtimeSettings.maxLength, 512)
 })
 
-test('studyChatMessages budgets and clips source context around matched terms', () => {
+test('remote studyChatMessages budgets and clips source context around matched terms', () => {
   const request = {
     prompt: 'Why is pinning needed?',
     messages: [],
     materials: [],
     model: {
       ...ollamaChatModel,
+      engine: 'remote',
       contextLength: 2048
     },
     settings: {},
@@ -415,9 +418,12 @@ test('questionSuggestionMessages uses follow-up wording once a chat has history'
   assert.match(prompt, /6-12 words/i)
   assert.doesNotMatch(prompt, /first questions/)
   assert.doesNotMatch(prompt, /What part of this usually confuses people/)
+  assert.match(prompt, /What is atomicity\?/)
+  assert.match(prompt, /Atomicity means all-or-nothing execution/)
+  assert.match(prompt, /practice statement may be false/)
 })
 
-test('followUpSuggestionMessages uses only the current question and latest answer', () => {
+test('followUpSuggestionMessages checks the current question and latest answer against source passages', () => {
   const messages = followUpSuggestionMessages({
     prompt: "Isn't contention also a problem in 2Q?",
     answerPrompt: 'Previous question: Why does an operating system use LRU?\nCurrent question: Is contention also a problem?',
@@ -451,7 +457,8 @@ test('followUpSuggestionMessages uses only the current question and latest answe
   assert.match(messages[1].content, /Current question:\nIsn't contention also a problem in 2Q\?/)
   assert.match(messages[1].content, /Latest answer:\nNo\. The answer explains 2Q using FIFO and LRU lists\./)
   assert.doesNotMatch(messages[1].content, /Previous question/)
-  assert.doesNotMatch(messages[1].content, /MRU and scans/)
+  assert.match(messages[1].content, /MRU and scans/)
+  assert.doesNotMatch(messages[1].content, /Older answer about operating systems/)
 })
 
 test('migrates every known default but keeps the initial and custom follow-up prompts independent', () => {

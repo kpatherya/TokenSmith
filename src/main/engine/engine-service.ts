@@ -28,10 +28,10 @@ async function withStarterSources(
   }
 
   signal?.throwIfAborted()
-  const starterSources = await starterSourcesWithPython(request.materials, 4)
+  const starterSources = await starterSourcesWithPython(request.materials, 4, request.documents)
   signal?.throwIfAborted()
   if (starterSources.length === 0) {
-    throw new Error('No indexed PDF text was available for starter questions.')
+    throw new Error('No indexed text was available in the selected documents for starter questions.')
   }
 
   return { ...request, retrievedSources: starterSources }
@@ -46,7 +46,10 @@ export async function listEngines(): Promise<EngineInfo[]> {
 }
 
 export async function sendChatMessage(request: EngineChatRequest, options: EngineRunOptions = {}): Promise<EngineChatResponse> {
-  writeTokenSmithLog('chat_request_context', chatRequestLogDetails(request))
+  writeTokenSmithLog('chat_request_context', {
+    requestId: request.requestId,
+    ...chatRequestLogDetails(request)
+  })
 
   const response = await sendStudyChatMessage(request, {
     getPythonEngineHealth,
@@ -55,11 +58,18 @@ export async function sendChatMessage(request: EngineChatRequest, options: Engin
   }, options)
 
   writeTokenSmithLog('chat_response_context', {
+    requestId: request.requestId,
     modelName: response.modelName,
     text: response.text,
     sourceCount: response.sources.length,
     sources: response.sources.map(logSource)
   })
+  if (response.latencyTrace) {
+    writeTokenSmithLog('chat_latency_trace', {
+      requestId: request.requestId,
+      trace: response.latencyTrace
+    })
+  }
 
   return response
 }

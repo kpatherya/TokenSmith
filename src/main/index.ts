@@ -11,6 +11,8 @@ import {
   indexMaterialWithPython,
   listIndexedMaterialsWithPython,
   previewCleaningWithPython,
+  studyDocumentsWithPython,
+  practiceSourcesWithPython,
   removeMaterialWithPython,
   readTokenSmithLogFile,
   resolveSourceDocumentWithPython,
@@ -18,7 +20,7 @@ import {
   setMaterialEnabledWithPython,
   starterSourcesWithPython
 } from './python/python-engine-service'
-import { listOpenAiCompatibleModels } from './engine/remote-chat-service'
+import { getModelContextMetadata } from './engine/model-context-metadata'
 import { CloudGeneratorService, cloudResult } from './engine/cloud-generator-service'
 import { remoteGeneratorFetch, setRemoteGeneratorTransport } from './engine/remote-generator-network'
 import type { CloudConnectionInput, CloudGeneratorInput } from '../shared/cloud-generators'
@@ -40,7 +42,7 @@ import {
   sanitizeAppStateSecrets
 } from './engine/remote-model-secrets'
 import type { AppStateSnapshot, ChatSource, CourseMaterial, LocalModel, LocalModelRole, SearchMode } from '../shared/app-state'
-import type { EmbeddingOptions } from '../shared/embedding-settings'
+import type { StudyDocumentRef, LibrarySearchOptions } from '../shared/study-scope'
 import { removeRetiredModelState } from '../shared/retired-model-state'
 import type { CleaningProfileId, CleaningRuleId } from '../shared/cleaning'
 import type {
@@ -474,6 +476,7 @@ app.whenReady().then(async () => {
   ipcMain.handle('cloud:connections', () => cloudGenerators.status())
   ipcMain.handle('cloud:discover', (_event, input: CloudConnectionInput) => cloudResult(() => cloudGenerators.discover(input)))
   ipcMain.handle('cloud:connect-generator', (_event, input: CloudGeneratorInput) => cloudResult(() => cloudGenerators.connect(input)))
+  ipcMain.handle('cloud:forget', (_event, connectionId: string) => cloudResult(() => cloudGenerators.forget(connectionId)))
   ipcMain.handle('cloud:cancel', (_event, requestId: string) => cloudGenerators.cancel(requestId))
   ipcMain.handle('engine:list', () => listEngines())
   ipcMain.handle('engine:chat', async (event, request: EngineChatRequest) => {
@@ -520,10 +523,14 @@ app.whenReady().then(async () => {
   })
   ipcMain.handle('library:pick-materials', () => pickMaterials())
   ipcMain.handle('library:pick-material-folder', () => pickMaterialFolder())
-  ipcMain.handle('library:starter-sources', (_event, materials: CourseMaterial[], limit?: number) =>
-    starterSourcesWithPython(materials, limit)
+  ipcMain.handle('library:starter-sources', (_event, materials: CourseMaterial[], limit?: number, documents?: StudyDocumentRef[]) =>
+    starterSourcesWithPython(materials, limit, documents)
   )
-  ipcMain.handle('library:search', (_event, query: string, materials: CourseMaterial[], limit: number, embeddingModels?: LocalModel[], searchMode?: SearchMode, options?: EmbeddingOptions) =>
+  ipcMain.handle('library:study-documents', () => studyDocumentsWithPython())
+  ipcMain.handle('library:practice-sources', (_event, documents: StudyDocumentRef[], usedSourceKeys: string[], questionIndex: number) =>
+    practiceSourcesWithPython(documents, usedSourceKeys, questionIndex)
+  )
+  ipcMain.handle('library:search', (_event, query: string, materials: CourseMaterial[], limit: number, embeddingModels?: LocalModel[], searchMode?: SearchMode, options?: LibrarySearchOptions) =>
     searchLibraryWithPython(query, materials, limit, embeddingModels, searchMode, options)
   )
   ipcMain.handle('library:get-pdf-for-source', (_event, source: ChatSource) => getPdfForSource(source))
@@ -564,6 +571,9 @@ app.whenReady().then(async () => {
     removeMaterialWithPython(materialId, materialPath)
   )
   ipcMain.handle('ollama:status', () => getOllamaStatus())
+  ipcMain.handle('models:context-metadata', (_event, model: LocalModel) =>
+    getModelContextMetadata(model.engine === 'remote' ? modelWithRememberedRemoteApiKey(model) : model)
+  )
   ipcMain.handle('ollama:open-download-page', () => openOllamaDownloadPage())
   ipcMain.handle('ollama:open-app', () => openOllamaApp())
   ipcMain.handle('ollama:start-service', () => startOllamaService())
@@ -573,9 +583,6 @@ app.whenReady().then(async () => {
   ipcMain.handle('ollama:pull-model', (_event, modelName: string, baseUrl?: string) => pullOllamaModel(modelName, baseUrl))
   ipcMain.handle('ollama:cancel-pull', (_event, modelName: string, baseUrl?: string) => cancelOllamaPullModel(modelName, baseUrl))
   ipcMain.handle('ollama:delete-model', (_event, modelName: string, baseUrl?: string) => deleteOllamaModel(modelName, baseUrl))
-  ipcMain.handle('models:list-remote-provider-models', (_event, apiKey: string, baseUrl: string, role?: LocalModelRole) =>
-    listOpenAiCompatibleModels(apiKey, baseUrl, role)
-  )
   ipcMain.handle('models:remove-model', (_event, model: LocalModel) => {
     if (model.engine === 'ollama' || model.source === 'ollama') {
       return deleteOllamaModel(model.ollamaModelName ?? model.name, model.ollamaBaseUrl)
